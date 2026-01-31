@@ -5,7 +5,7 @@ import { Withdraw } from './sub/Withdraw';
 import { settingState } from '@/lib/jotai';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLingui } from '@lingui/react/macro';
 import {
     Button,
     Dialog,
@@ -24,7 +24,7 @@ import Profile from './sub/Profile';
 // View 컴포넌트는 설정 다이얼로그를 렌더링합니다.
 export default function View() {
     const [setting, setSetting] = useAtom(settingState);
-    const t = useTranslations('setting');
+    const { t } = useLingui();
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down(DIALOG_BREAKPOINT));
 
@@ -64,7 +64,7 @@ export default function View() {
                     variant="contained"
                     color="secondary"
                 >
-                    {t('close')}
+                    {t`닫기`}
                 </Button>
             </DialogActions>
         </Dialog>

@@ -9,40 +9,37 @@ import { openConfirmState, openSnackbarState } from '@/lib/jotai';
 import { useSetAtom } from 'jotai';
 import s from '../style.module.css';
 import { createClient } from '@/supabase/utils/client';
-import { useTranslations } from 'next-intl';
+import { useLingui } from '@lingui/react/macro';
 import { useRouter } from 'next/navigation';
 
 export function Withdraw() {
     const openConfirm = useSetAtom(openConfirmState);
     const openSnackbar = useSetAtom(openSnackbarState);
-    const t = useTranslations('setting');
+    const { t } = useLingui();
     const router = useRouter();
 
     return (
         <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>{t('service-withdrawal')}</Typography>
+                <Typography>{t`서비스 탈퇴`}</Typography>
             </AccordionSummary>
             <AccordionDetails>
                 <div className={s.root}>
-                    <div>{t('withdrawal-info')}</div>
+                    <div>{t`서비스 탈퇴 시 다음 개인 정보가 영구적으로 삭제됩니다:`}</div>
                     <ul>
-                        <li>{t('user-id')}</li>
-                        <li>{t('registered-email')}</li>
-                        <li>{t('password')}</li>
-                        <li>{t('user-generated-pages')}</li>
+                        <li>{t`사용자 ID`}</li>
+                        <li>{t`등록된 이메일 주소`}</li>
+                        <li>{t`비밀번호`}</li>
+                        <li>{t`사용자가 생성한 페이지 및 관련 모든 정보`}</li>
                     </ul>
-                    <div>{t('withdrawal-process-info')}</div>
+                    <div>{t`'탈퇴 확인' 버튼을 클릭하여 추가 확인 단계를 진행하십시오.`}</div>
                     <div className={s.apply}>
                         <Button
                             variant="contained"
                             onClick={async () => {
                                 openConfirm({
-                                    message: t('confirm-withdrawal'),
+                                    message: t`탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.`,
                                     onYes: async () => {
-                                        // const { data, error } = await supabase.auth.admin.deleteUser(
-                                        //   user.id
-                                        // );
                                         // @ts-ignore
                                         const resp = await fetch('/api/setting/withdraw', {
                                             method: 'POST',
@@ -69,7 +66,7 @@ export function Withdraw() {
                                 });
                             }}
                         >
-                            {t('withdrawal')}
+                            {t`탈퇴`}
                         </Button>
                     </div>
                 </div>

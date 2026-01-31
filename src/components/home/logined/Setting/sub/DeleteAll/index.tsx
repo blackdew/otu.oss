@@ -10,10 +10,10 @@ import { useAtom, useSetAtom } from 'jotai';
 import s from '../style.module.css';
 import { clearOnlyWatermelonDB, clearStorage } from '@/functions/clearStorage';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useLingui } from '@lingui/react/macro';
 
 export function DeleteAll() {
-    const t = useTranslations('setting.delete-all');
+    const { t } = useLingui();
     const openConfirm = useSetAtom(openConfirmState);
     const [currentPage, setCurrentPage] = useAtom(currentPageState);
     const setSetting = useSetAtom(settingState);
@@ -22,32 +22,32 @@ export function DeleteAll() {
     return (
         <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>{t('title')}</Typography>
+                <Typography>{t`데이터 삭제`}</Typography>
             </AccordionSummary>
             <AccordionDetails>
                 <div>
-                    <h1>{t('title')}</h1>
+                    <h1>{t`데이터 삭제`}</h1>
                 </div>
-                <div>{t('description')}</div>
-                <div>{t('instruction')}</div>
+                <div>{t`모든 데이터를 삭제 합니다.`}</div>
+                <div>{t`'삭제' 버튼을 클릭하면, 추가적인 확인 절차를 거쳐 삭제가 진행됩니다.`}</div>
                 <div className={s.apply}>
                     <Button
                         variant="contained"
                         onClick={async () => {
                             openConfirm({
-                                message: t('confirm-message'),
+                                message: t`정말 삭제하시겠습니까? 복원이 불가능합니다.`,
                                 onYes: async () => {
-                                    await clearStorage(t('clear-storage-message'));
+                                    await clearStorage(t`익명 사용자 모드에서 모든 데이터 삭제`);
                                     setSetting({ open: false });
                                     setCurrentPage({ type: 'HOME', id: null, path: '/' });
                                     router.push('/welcome');
                                 },
-                                yesLabel: t('confirm'),
+                                yesLabel: t`확인`,
                                 onNo: () => {},
                             });
                         }}
                     >
-                        {t('delete')}
+                        {t`삭제`}
                     </Button>
                 </div>
             </AccordionDetails>

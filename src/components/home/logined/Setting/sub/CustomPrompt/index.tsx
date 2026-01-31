@@ -4,7 +4,7 @@
 import ExportButton from '@/components/common/button/ExportButton';
 import { useEffect, useState } from 'react';
 import s from '../style.module.css';
-import { useTranslations } from 'next-intl';
+import { useLingui } from '@lingui/react/macro';
 import {
     FormControl,
     TextField,
@@ -30,8 +30,7 @@ import { settingLogger } from '@/debug/setting';
 
 export default function CustomPrompt() {
     const router = useRouter();
-    const t = useTranslations('setting.custom-prompt');
-    const commonT = useTranslations('common');
+    const { t } = useLingui();
     const [locale, setLocale] = useState<Locale>('en');
     const [customPrompt, setCustomPrompt] = useState<string>('');
     const isOnline = typeof navigator !== 'undefined' && navigator.onLine;
@@ -39,7 +38,7 @@ export default function CustomPrompt() {
     const supabase = createClient();
 
     // 언어별 기본 프롬프트 가져오기
-    const defaultPicturePrompt = t('default-picture-prompt');
+    const defaultPicturePrompt = t`이미지의 초점이 문자라면 문자만 출력해주세요. 그렇지 않다면, 보이는 사물을 단어로 나열해주세요. 설명형 문장 사용 금지. 예: 컵, 꽃, 바다, 갈매기`;
 
     // 커스텀 프롬프트 변경 핸들러
     const handlePromptChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +65,7 @@ export default function CustomPrompt() {
 
             settingLogger('프롬프트 저장 성공:', data);
             openSnackbar({
-                message: t('prompt-saved'),
+                message: t`프롬프트가 저장되었습니다`,
                 severity: 'info',
                 autoHideDuration: 3000,
                 horizontal: 'left',
@@ -75,7 +74,7 @@ export default function CustomPrompt() {
         } catch (error) {
             settingLogger('프롬프트 저장 실패:', error);
             openSnackbar({
-                message: t('error-saving-prompt'),
+                message: t`프롬프트 저장 중 오류가 발생했습니다`,
                 severity: 'error',
                 autoHideDuration: 3000,
                 horizontal: 'left',
@@ -134,7 +133,7 @@ export default function CustomPrompt() {
     return (
         <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>{t('title')}</Typography>
+                <Typography>{t`사진 프롬프트`}</Typography>
             </AccordionSummary>
             <AccordionDetails>
                 <FormControl fullWidth>
@@ -145,7 +144,7 @@ export default function CustomPrompt() {
                             className="fill-text-color stroke-text-color"
                         />
                         <Typography variant="body2" sx={{ flex: 1 }}>
-                            {t('photo-prompt-description')}
+                            {t`이미지 업로드 시 AI가 이미지를 분석해 정보를 제공합니다. 여기서 AI의 이미지 설명 방식을 설정할 수 있습니다.`}
                         </Typography>
                     </Box>
                     <TextField
@@ -157,7 +156,7 @@ export default function CustomPrompt() {
                         variant="outlined"
                     />
                     <div className="text-center mt-4">
-                        <Button onClick={handleSavePrompt}>{commonT('apply')}</Button>
+                        <Button onClick={handleSavePrompt}>{t`적용`}</Button>
                     </div>
                 </FormControl>
             </AccordionDetails>

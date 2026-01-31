@@ -1,7 +1,7 @@
 'use client';
 
 import { useAtom } from 'jotai';
-import { useTranslations } from 'next-intl';
+import { useLingui } from '@lingui/react/macro';
 import { useEffect, useState, useRef } from 'react';
 import {
     Accordion,
@@ -79,7 +79,7 @@ function getTimezoneOffsetString(timeZone: string) {
 }
 
 export default function Profile() {
-    const t = useTranslations();
+    const { t } = useLingui();
     const [nickname, setNickname] = useState('');
     const [profileImage, setProfileImage] = useState('');
     const [timezone, setTimezone] = useState('');
@@ -262,7 +262,7 @@ export default function Profile() {
             });
 
             openSnackbar({
-                message: t('profile.profile-saved'),
+                message: t`프로필이 저장되었습니다`,
                 severity: 'info',
                 autoHideDuration: 3000,
                 horizontal: 'left',
@@ -298,38 +298,38 @@ export default function Profile() {
             onChange={() => setProfileDialog((prev) => ({ ...prev, open: !prev.open }))}
         >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>{t('profile.title')}</Typography>
+                <Typography>{t`프로필`}</Typography>
             </AccordionSummary>
             <AccordionDetails>
                 {isLoading ? (
-                    <Typography>{t('profile.loading')}</Typography>
+                    <Typography>{t`로딩 중...`}</Typography>
                 ) : (
                     <div className={`${s.root}`}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                             <TextField
                                 fullWidth
-                                label={t('profile.nickname')}
+                                label={t`닉네임`}
                                 value={nickname}
                                 onChange={(e) => setNickname(e.target.value)}
                             />
 
                             <Box>
                                 <Typography variant="subtitle1" sx={{ mb: 1 }}>
-                                    {t('profile.timezone')}
+                                    {t`타임존`}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                                    {t('profile.timezone-description')}
+                                    {t`설정된 시간대 기준 밤 10시~아침 7시에는 리마인더 알람이 발송되지 않습니다`}
                                 </Typography>
 
                                 <FormControl fullWidth sx={{ mb: 2 }}>
                                     <InputLabel id="timezone-select-label">
-                                        {t('profile.select-timezone')}
+                                        {t`타임존을 선택하세요`}
                                     </InputLabel>
                                     <Select
                                         labelId="timezone-select-label"
                                         id="timezone-select"
                                         value={timezone}
-                                        label={t('profile.select-timezone')}
+                                        label={t`타임존을 선택하세요`}
                                         onChange={(e) => setTimezone(e.target.value)}
                                     >
                                         {timezoneOptions.map((option) => (
@@ -343,20 +343,17 @@ export default function Profile() {
 
                             <Box>
                                 <Typography variant="subtitle1" sx={{ mb: 1 }}>
-                                    {t('profile.profile-image')}
+                                    {t`프로필 이미지`}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                                    {t('profile.recommended-size', {
-                                        width: PROFILE_IMAGE_SIZE.width,
-                                        height: PROFILE_IMAGE_SIZE.height,
-                                    })}
+                                    {t`권장 크기: ${PROFILE_IMAGE_SIZE.width}×${PROFILE_IMAGE_SIZE.height}`}
                                 </Typography>
 
                                 {profileImage && (
                                     <Box sx={{ mb: 2, display: 'flex', justifyContent: 'center' }}>
                                         <Avatar
                                             src={profileImage}
-                                            alt={nickname || t('profile.profile-image')}
+                                            alt={nickname || t`프로필 이미지`}
                                             sx={{
                                                 width: PROFILE_IMAGE_SIZE.width / 2,
                                                 height: PROFILE_IMAGE_SIZE.height / 2,
@@ -392,7 +389,7 @@ export default function Profile() {
                     </div>
                 )}
                 <div className="text-center mt-4">
-                    <Button onClick={handleSave}>{t('common.apply')}</Button>
+                    <Button onClick={handleSave}>{t`적용`}</Button>
                 </div>
             </AccordionDetails>
         </Accordion>

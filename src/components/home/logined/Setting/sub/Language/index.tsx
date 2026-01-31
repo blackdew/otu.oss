@@ -3,8 +3,7 @@
 import ExportButton from '@/components/common/button/ExportButton';
 import { useEffect, useState } from 'react';
 import s from '../style.module.css';
-import { useSetAtom } from 'jotai';
-import { useTranslations } from 'next-intl';
+import { useLingui } from '@lingui/react/macro';
 import {
     FormControl,
     FormControlLabel,
@@ -24,8 +23,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function Language() {
     const router = useRouter();
-    const t = useTranslations('setting');
-    const tContentList = useTranslations('content-list');
+    const { t } = useLingui();
     const [locale, setLocale] = useState<Locale>('en');
     const isOnline = typeof navigator !== 'undefined' && navigator.onLine;
 
@@ -55,7 +53,7 @@ export default function Language() {
     return (
         <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>{t('language')}</Typography>
+                <Typography>{t`언어 (Language)`}</Typography>
             </AccordionSummary>
             <AccordionDetails>
                 <div className={`${s.root}`}>
@@ -70,12 +68,12 @@ export default function Language() {
                                 <FormControlLabel
                                     value="en"
                                     control={<Radio />}
-                                    label={tContentList('language.english')}
+                                    label={t`English`}
                                 />
                                 <FormControlLabel
                                     value="ko"
                                     control={<Radio />}
-                                    label={tContentList('language.korean')}
+                                    label={t`한국어`}
                                 />
                             </RadioGroup>
                         </FormControl>
