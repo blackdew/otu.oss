@@ -12,7 +12,7 @@
 - **add, commit 작업** - 사용자 요청 시 Git 작업 수행 가능
 - **Prettier 포맷팅 필수** - 코드 작성 후 반드시 `npm run prettier` 실행
 - **변경사항 영향 분석**: 작업 후 영향받을 수 있는 기능을 나열하고 테스트 방법 제시 (중요도별로 "반드시", "가급적", "참고" 등급으로 구분)
-- **문서화**: `/docs/meta-guides/functionality.md`, `/docs/` 참고 및 업데이트
+- **문서화**: `/docs/functionality.md`, `/docs/` 참고 및 업데이트
 - **로깅**: `/debug` 디렉토리의 debug.js 라이브러리 사용
 - **다국어**: UI 텍스트는 항상 다국어 처리 확인
 
@@ -31,13 +31,20 @@
 프로젝트/
 ├── README.md              # 프로젝트 소개 + 빠른 시작
 ├── CLAUDE.md              # AI 코딩 규칙 + 아키텍처 요약
-├── CONTRIBUTING.md        # 기여 가이드 (오픈소스 표준)
-├── CODE_OF_CONDUCT.md     # 행동 강령 (오픈소스 표준)
-├── SECURITY.md            # 보안 정책 (오픈소스 표준)
 └── docs/
+    ├── installation.md    # 설치 가이드 (외부 기여자 진입점)
     ├── deployment.md      # 프로덕션 배포 가이드
-    └── functionality.md   # 전체 기능 명세
+    ├── functionality.md   # 전체 기능 명세
+    ├── CONTRIBUTING.md    # 기여 가이드 (오픈소스 표준)
+    ├── CODE_OF_CONDUCT.md # 행동 강령 (오픈소스 표준)
+    └── SECURITY.md        # 보안 정책 (오픈소스 표준)
 ```
+
+**코드 주석으로 대체 불가한 문서** (독립 문서로 유지):
+
+- 설치/배포 가이드 - 외부 사용자/기여자 진입점
+- 기여 가이드, 행동 강령 - 오픈소스 커뮤니티 표준
+- 기능 명세 - 여러 파일에 걸친 전체 기능 목록
 
 **문서 작성/수정 시 체크리스트**:
 
@@ -328,7 +335,7 @@ OPENAI_API_KEY=                 # ENABLE_AI=true일 때 필요 (개발 환경)
 
 프로젝트에 대한 더 자세한 정보는 다음 문서들을 참고하세요:
 
-- **기능 목록**: `/docs/meta-guides/functionality.md` - 사용자 관리, 편집, 폴더, 알람 등 전체 기능 명세
+- **기능 목록**: `/docs/functionality.md` - 사용자 관리, 편집, 폴더, 알람 등 전체 기능 명세
 
 메커니즘 문서들은 해당 코드 파일 상단 주석으로 통합되었습니다:
 
