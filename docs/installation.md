@@ -82,8 +82,10 @@ NEXT_PUBLIC_ENABLE_EMAIL_LOGIN=true
 # PWA 비활성화 (기본값: true)
 NEXT_PUBLIC_PWA_DISABLED=true
 
-# 디버그 로깅
-DEBUG=sync
+# 디버그 로깅 (기본값: 비활성화)
+# 개발 중 특정 모듈의 로그를 보려면 활성화하세요.
+# 예: DEBUG=sync (동기화), DEBUG=sync,chat (동기화+채팅), DEBUG=* (전체)
+# DEBUG=
 
 # 파일 업로드 (Uploadcare)
 # 이미지 업로드 기능을 사용하려면 Uploadcare 계정이 필요합니다.
