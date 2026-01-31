@@ -60,7 +60,6 @@
             }
         },
         "embedding-scheduler": {
-            "cron-secret-missing": "CRON_SECRET is not set. Please add it to the .env file by referring to .env.template.",
             "unauthorized": "Authentication failed."
         },
         "errors": {
@@ -93,7 +92,6 @@
             "monthly-usage-exceeded": "Monthly usage limit exceeded. Next reset date: {resetDate} ({daysRemaining} days remaining)",
             "subscription-renewal-failed": "Subscription renewal failed. Please check your payment information.",
             "reset": {
-                "missing-cron-secret": "CRON_SECRET is not set. Please add it to the .env file by referring to .env.template",
                 "reset-complete": "Reset usage for {count} users.",
                 "reset-test-initialized": "Reset test has been reset.",
                 "test-db-error": "Database query error during test preparation: {error}"
@@ -158,7 +156,8 @@
         "oops": "Oops!",
         "screenshot": "screenshot",
         "screenshots": "screenshots",
-        "url-copied": "URL copied!"
+        "url-copied": "URL copied!",
+        "signup": "Sign Up"
     },
     "content-list": {
         "sort": "Sort",
