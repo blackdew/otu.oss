@@ -80,7 +80,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     const locale = await getUserLocale();
 
     // LinguiJS 초기화 - 컴파일된 카탈로그 로드
-    const { messages: linguiMessages } = await import(`../src/locales/${locale}/messages.po`);
+    let linguiMessages;
+    try {
+        const catalog = await import(`../src/locales/${locale}/messages.po`);
+        linguiMessages = catalog.messages;
+    } catch (error) {
+        console.error(`Failed to load locale "${locale}", falling back to default`, error);
+        const catalog = await import(`../src/locales/ko/messages.po`);
+        linguiMessages = catalog.messages;
+    }
     loadCatalog(locale, linguiMessages);
     setI18n(i18n);
 

@@ -388,14 +388,14 @@ export default function QuickNoteInput() {
                                     titlePart = lastCreatePage.title;
                                     updatedBody += `<p>${title.slice(1)}</p>`;
                                     openSnackbar({
-                                        message: titlePart,
+                                        message: t`${titlePart}에 내용을 추가했습니다`,
                                     });
                                 } else if (title.endsWith('&')) {
                                     // @ts-ignore
                                     titlePart = lastCreatePage.title;
                                     updatedBody = `<p>${title.slice(0, -1)}</p>` + updatedBody;
                                     openSnackbar({
-                                        message: titlePart,
+                                        message: t`${titlePart}의 앞에 내용을 추가했습니다`,
                                     });
                                 }
 

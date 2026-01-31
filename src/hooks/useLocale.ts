@@ -9,5 +9,9 @@ import type { Locale } from '@/functions/constants';
  */
 export function useLocale(): Locale {
     const { i18n } = useLingui();
-    return i18n.locale as Locale;
+    const locale = i18n.locale;
+    if (locale === 'ko' || locale === 'en') {
+        return locale;
+    }
+    return 'ko';
 }
