@@ -163,7 +163,6 @@ npm run test:middleware
 
 - `NEXT_PUBLIC_SUPABASE_URL`: 로컬 Supabase (localhost:54321)
 - `NEXT_PUBLIC_PUSH_SERVICE_APP_ID`: test-app-id
-- `CRON_SECRET`: test-cron-secret
 
 ### Mock 전략
 

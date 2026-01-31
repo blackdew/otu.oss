@@ -19,7 +19,6 @@
 - 🔔 **스마트 리마인더**: 지수적 알람 주기로 중요한 메모 복습
 - 🌓 **3가지 테마**: 회색, 흰색, 검정 모드
 - 🌐 **다국어 지원**: 한국어, 영어
-- 📱 **PWA 지원**: 오프라인 사용 가능
 - 🔄 **실시간 동기화**: WatermelonDB + Supabase
 
 ## 📑 목차
@@ -138,9 +137,6 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 
 # 호스트 설정 (필수)
 NEXT_PUBLIC_HOST=http://localhost:3000
-
-# 크론 작업 보안 (개발 환경)
-CRON_SECRET=your_secret_token
 ```
 
 #### AI 기능 설정
@@ -152,11 +148,9 @@ AI 채팅, 제목 자동 생성, RAG 검색 등의 AI 기능을 사용하려면 
 # true로 설정해야 AI 기능이 작동합니다
 ENABLE_AI=true
 
-# OpenAI API 키 (ENABLE_AI=true일 때 필수)
+# OpenAI API 키 (개발 환경에서 ENABLE_AI=true일 때 필수)
 OPENAI_API_KEY=your_openai_api_key
-
-# Cohere API 키 (임베딩/RAG 기능 사용 시 필요)
-COHERE_API_KEY=your_cohere_api_key
+# 프로덕션 환경에서는 Vercel AI Gateway를 통해 AI 및 임베딩 기능이 제공됩니다.
 ```
 
 > ⚠️ **주의**: `ENABLE_AI=false`(기본값)일 경우, 앱은 정상 동작하지만 AI 관련 기능(채팅, 자동 제목 생성, 스마트 검색 등)은 비활성화됩니다.
@@ -174,9 +168,6 @@ NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY=your_uploadcare_key
 
 # 소셜 로그인 리디렉션
 NEXT_PUBLIC_SOCIAL_LOGIN_REDIRECT_TO=http://localhost:3000
-
-# PWA 비활성화 (개발 환경)
-NEXT_PUBLIC_PWA_DISABLED=true
 ```
 
 > 💡 **팁**: 개발 환경 설정에 대한 자세한 내용은 [개발환경 설정 문서](https://docs.google.com/document/d/1RfoB5Bm0ehCVIDumNtbqJ5Aps6J-BT3dCL4TZ2K7YjY/edit)를 참조하세요.
@@ -821,7 +812,9 @@ https://github.com/opentutorials-org/otu.ai/issues?q=is%3Aissue+label%3Atraining
 - **결재 상태:** 현재 free version
 - **Pricing:** $75
 
-#### Cohere
+#### Cohere (레거시 - 더 이상 사용하지 않음)
+
+> **참고:** 임베딩 기능은 Vercel AI Gateway로 마이그레이션되었습니다. Cohere API는 더 이상 사용되지 않습니다.
 
 - **ID:** 이고잉 opentutorials.org 계정
 - **Billing & Usage:** [Cohere Billing & Usage](https://dashboard.cohere.com/billing)

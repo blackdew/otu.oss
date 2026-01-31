@@ -58,29 +58,20 @@ SUPABASE_DATABASE_URL=postgresql://postgres:postgres@localhost:54322/postgres
 # 호스트 설정
 NEXT_PUBLIC_HOST=http://localhost:3000
 NEXT_PUBLIC_SOCIAL_LOGIN_REDIRECT_TO=http://localhost:3000
-
-# CRON 작업 시크릿 (임의의 문자열)
-CRON_SECRET=your_random_secret_string
 ```
 
 #### 선택 환경 변수
 
 ```bash
 # AI 기능 (기본값: false)
-# true로 설정하면 AI 채팅, 제목 자동 생성, 이미지 분석 기능이 활성화됩니다.
+# true로 설정하면 AI 채팅, 제목 자동 생성, 이미지 분석, 임베딩/RAG 기능이 활성화됩니다.
 ENABLE_AI=false
-OPENAI_API_KEY=sk-your-openai-api-key       # ENABLE_AI=true일 때 필요
-COHERE_API_KEY=your-cohere-api-key          # 임베딩/RAG 기능에 필요
+OPENAI_API_KEY=sk-your-openai-api-key       # ENABLE_AI=true일 때 필요 (개발 환경)
+# 프로덕션에서는 Vercel AI Gateway를 통해 AI 기능이 제공됩니다.
 
 # Sentry 에러 모니터링 (기본값: false)
 NEXT_PUBLIC_ENABLE_SENTRY=false
 NEXT_PUBLIC_SENTRY_DSN=your_sentry_dsn      # ENABLE_SENTRY=true일 때 필요
-
-# 이메일 로그인 허용 (개발 환경에서만 true 권장)
-NEXT_PUBLIC_ENABLE_EMAIL_LOGIN=true
-
-# PWA 비활성화 (기본값: true)
-NEXT_PUBLIC_PWA_DISABLED=true
 
 # 디버그 로깅 (기본값: 비활성화)
 # 개발 중 특정 모듈의 로그를 보려면 활성화하세요.
@@ -155,14 +146,14 @@ npm run dev:ip
 AI 기능을 사용하려면:
 
 1. [OpenAI API](https://platform.openai.com/)에서 API 키를 발급받습니다.
-2. (선택) [Cohere API](https://cohere.com/)에서 임베딩용 API 키를 발급받습니다.
-3. `.env.local`을 업데이트합니다:
+2. `.env.local`을 업데이트합니다:
 
 ```bash
 ENABLE_AI=true
-OPENAI_API_KEY=sk-your-openai-api-key
-COHERE_API_KEY=your-cohere-api-key  # RAG 기능 사용 시
+OPENAI_API_KEY=sk-your-openai-api-key  # 개발 환경에서 필요
 ```
+
+> **참고**: 프로덕션 환경에서는 Vercel AI Gateway를 통해 AI 기능(채팅, 제목 생성, 임베딩/RAG 등)이 제공됩니다.
 
 ## 문제 해결
 
