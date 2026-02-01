@@ -6,7 +6,7 @@ import { DocumentIcon, FolderOpenIcon, BellIcon } from '@heroicons/react/24/outl
 import { requestHapticFeedback } from '@/utils/hapticFeedback';
 import { navPageLogger } from '@/debug/nav';
 import { useEffect, useState } from 'react';
-import { checkIsSuperuser } from '@/functions/checkSuperuser';
+import { checkIsSuperuser } from '@/functions/auth/checkSuperuser';
 
 export default function ContentTypeSwitcher() {
     const { t } = useLingui();

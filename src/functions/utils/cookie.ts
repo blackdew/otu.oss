@@ -1,4 +1,4 @@
-import { defaultLocale, LANG_COOKIE_NAME, Locale, locales } from './constants';
+import { defaultLocale, LANG_COOKIE_NAME, Locale, locales } from '@/functions/constants';
 
 export function getCookie(name: string): string | undefined {
     let cookie: { [key: string]: string } = {};

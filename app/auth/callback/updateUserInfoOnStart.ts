@@ -1,7 +1,7 @@
 import { authLogger } from '@/debug/auth';
 import { FREE_PLAN_USAGE_LIMIT, SESSION_USER_ID_FOR_CHECK_SYNC } from '@/functions/constants';
-import { getCookie, setCookie } from '@/functions/cookie';
-import { getFirstDayOfMonth } from '@/functions/getFirstDayOfMonth';
+import { getCookie, setCookie } from '@/functions/utils/cookie';
+import { getFirstDayOfMonth } from '@/functions/utils/getFirstDayOfMonth';
 import { createClient } from '@/supabase/utils/client';
 
 const AGREEMENTS_COOKIE_NAME = 'agreements';

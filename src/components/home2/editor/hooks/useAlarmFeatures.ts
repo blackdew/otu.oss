@@ -9,7 +9,7 @@ import { webviewLogger } from '@/debug/webview';
 import { openExternalLink } from '@/utils/openExternalLink';
 import { ulid } from 'ulid';
 import { communicateWithAppsWithCallback } from '@/components/core/WebViewCommunicator';
-import { checkIsSuperuser } from '@/functions/checkSuperuser';
+import { checkIsSuperuser } from '@/functions/auth/checkSuperuser';
 import { isProduction } from '@/utils/environment';
 import { database } from '@/watermelondb';
 import { Q } from '@nozbe/watermelondb';

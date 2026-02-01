@@ -1,5 +1,5 @@
 import { communicateWithAppsWithCallback } from '@/components/core/WebViewCommunicator';
-import { isReactNativeWebView } from '@/functions/detectEnvironment';
+import { isReactNativeWebView } from '@/functions/env/detectEnvironment';
 
 /**
  * 외부 링크를 여는 함수

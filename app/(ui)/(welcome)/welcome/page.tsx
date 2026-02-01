@@ -15,7 +15,7 @@ import { Btn } from '@/components/layout/Btn';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useLingui, Trans } from '@lingui/react/macro';
-import { isReactNativeWebView } from '@/functions/detectEnvironment';
+import { isReactNativeWebView } from '@/functions/env/detectEnvironment';
 import { openExternalLink } from '@/utils/openExternalLink';
 import { GlobeAmericasIcon } from '@heroicons/react/24/solid';
 

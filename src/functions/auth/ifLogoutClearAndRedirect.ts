@@ -1,4 +1,4 @@
-import { clearStorage } from '@/functions/clearStorage';
+import { clearStorage } from '@/functions/storage/clearStorage';
 import { createClient } from '@/supabase/utils/client';
 
 export async function ifLogoutClearAndRedirect() {

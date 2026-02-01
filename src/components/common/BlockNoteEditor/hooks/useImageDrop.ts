@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState, useEffect } from 'react';
-import { processFile } from '@/functions/uploadcare';
+import { processFile } from '@/functions/media/uploadcare';
 import { editorViewLogger } from '@/debug/editor';
 import { useSetAtom } from 'jotai';
 import { openSnackbarState } from '@/lib/jotai';

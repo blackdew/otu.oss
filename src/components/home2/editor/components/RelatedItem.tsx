@@ -6,7 +6,7 @@ import { editorAutoSaveLogger } from '@/debug/editor';
 import Link from 'next/link';
 import React, { memo, useState, useCallback, useMemo, useEffect } from 'react';
 import { useLingui } from '@lingui/react/macro';
-import { isMobile } from '@/functions/isMobile';
+import { isMobile } from '@/functions/env/isMobile';
 import { useNavigate } from 'react-router-dom';
 
 function extractFirstH1OrSentence(htmlStr: string, t: (key: string) => any) {

@@ -1,7 +1,7 @@
 import { ulid } from 'ulid';
 import * as FolderControl from '@/watermelondb/control/Folder';
 import * as PageControl from '@/watermelondb/control/Page';
-import { triggerSync } from './sync';
+import { triggerSync } from '@/functions/sync';
 
 // 폴더 타입 정의
 export type Folder = {

@@ -8,7 +8,7 @@ import {
     getUserId,
     fetchCaption,
     generateDownloadLink,
-} from '@/functions/uploadcare';
+} from '@/functions/media/uploadcare';
 import { uploadLogger } from '@/debug/upload';
 import get from 'lodash/get';
 

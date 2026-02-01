@@ -15,7 +15,7 @@
 import { createClient } from '@/supabase/utils/server';
 import { NextResponse } from 'next/server';
 import { alarmLogger } from '@/debug/alarm';
-import errorResponse from '@/functions/response';
+import errorResponse from '@/functions/api/response';
 import { v5 as uuidv5 } from 'uuid';
 
 // 알람 고유 식별자 생성을 위한 네임스페이스

@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { createClient } from '@/supabase/utils/client';
 import { useRouter } from 'next/navigation';
-import { clearStorage } from '@/functions/clearStorage';
+import { clearStorage } from '@/functions/storage/clearStorage';
 
 import { useLingui } from '@lingui/react/macro';
 

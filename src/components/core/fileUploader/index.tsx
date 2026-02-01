@@ -1,7 +1,7 @@
 'use client';
 
 import { uploaderLogger } from '@/debug/uploader';
-import { extractBodyInfo } from '@/functions/extractBodyInfo';
+import { extractBodyInfo } from '@/functions/page/extractBodyInfo';
 import {
     currentPageState,
     fileUploaderOpenState,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { openExternalLink } from '../utils/openExternalLink';
+import { openExternalLink } from '@/utils/openExternalLink';
 
 export const linkify = (text: string) => {
     const urlRegex =

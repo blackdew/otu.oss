@@ -1,5 +1,5 @@
 import { alarmLogger } from '@/debug/alarm';
-import errorResponse, { successResponse } from '@/functions/response';
+import errorResponse, { successResponse } from '@/functions/api/response';
 import { createSuperClient } from '@/supabase/utils/super';
 import { ulid } from 'ulid';
 

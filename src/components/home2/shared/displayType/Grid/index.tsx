@@ -16,7 +16,7 @@ import { CircleIcon } from '@/components/common/icons/CircleIcon';
 import { FolderTag } from '@/components/common/FolderTag';
 import { Add as AddIcon } from '@mui/icons-material';
 import BellIcon from '@/public/icon/BellIcon';
-import { getThumbnailUrl, isUploadcareUrl } from '@/functions/thumbnail';
+import { getThumbnailUrl, isUploadcareUrl } from '@/functions/media/thumbnail';
 
 type ContentListProps = {
     contents: {

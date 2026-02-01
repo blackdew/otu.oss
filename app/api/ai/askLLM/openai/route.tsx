@@ -4,7 +4,7 @@ import { NextRequest } from 'next/server';
 import { streamText, CoreMessage } from 'ai';
 import { gateway } from '@ai-sdk/gateway';
 import { createOpenAI } from '@ai-sdk/openai';
-import errorResponse from '@/functions/response';
+import errorResponse from '@/functions/api/response';
 import { generatePrompt, generateInstructions } from '@/functions/ai/vercel/prompt';
 import { extractContextMessages } from '@/functions/ai/vercel/extractContextMessages';
 import { createClient } from '@/supabase/utils/server';
@@ -14,7 +14,7 @@ import { aiLogger } from '@/debug/ai';
 import { TEXT_MODEL_NAME } from '@/functions/constants';
 import { getServerI18n } from '@/lib/lingui';
 import { msg } from '@lingui/core/macro';
-import { logHeader } from '@/functions/logHeader';
+import { logHeader } from '@/functions/api/logHeader';
 import { parseLocaleFromAcceptLanguage } from '@/functions/constants';
 import { canUseAI, getAIDisabledReason } from '@/functions/ai/config';
 

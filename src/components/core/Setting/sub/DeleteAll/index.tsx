@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { currentPageState, openConfirmState, settingState } from '@/lib/jotai';
 import { useAtom, useSetAtom } from 'jotai';
 import s from '../style.module.css';
-import { clearOnlyWatermelonDB, clearStorage } from '@/functions/clearStorage';
+import { clearOnlyWatermelonDB, clearStorage } from '@/functions/storage/clearStorage';
 import { useRouter } from 'next/navigation';
 import { useLingui } from '@lingui/react/macro';
 

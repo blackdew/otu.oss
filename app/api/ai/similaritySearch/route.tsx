@@ -17,7 +17,7 @@
  */
 import { cookies } from 'next/headers';
 import { createEmbedding } from '@/functions/ai';
-import errorResponse, { successResponse } from '@/functions/response';
+import errorResponse, { successResponse } from '@/functions/api/response';
 import { chatLogger } from '@/debug/chat';
 import { createClient } from '@/supabase/utils/server';
 import { getServerI18n } from '@/lib/lingui';

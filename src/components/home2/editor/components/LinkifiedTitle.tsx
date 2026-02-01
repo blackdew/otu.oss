@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef } from 'react';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import { linkify } from '@/functions/linkify';
+import { linkify } from '@/functions/utils/linkify';
 import { MAX_TEXT_LENGTH } from '@/functions/validation/textLength';
 import s from '../style.module.css';
 

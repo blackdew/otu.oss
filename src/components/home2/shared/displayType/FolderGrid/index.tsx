@@ -12,7 +12,7 @@ import { folderLogger } from '@/debug/folder';
 import s from '../Grid/style.module.css';
 import { useLingui } from '@lingui/react/macro';
 import { CircleIcon } from '@/components/common/icons/CircleIcon';
-import { getThumbnailUrl, isUploadcareUrl } from '@/functions/thumbnail';
+import { getThumbnailUrl, isUploadcareUrl } from '@/functions/media/thumbnail';
 
 type Folder = {
     id: string;

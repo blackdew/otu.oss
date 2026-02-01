@@ -1,6 +1,6 @@
-import { deleteFiles } from '@/functions/uploadcare';
+import { deleteFiles } from '@/functions/media/uploadcare';
 import { Database } from '@/lib/database/types';
-import errorResponse, { successResponse } from '@/functions/response';
+import errorResponse, { successResponse } from '@/functions/api/response';
 import { createClient } from '@/supabase/utils/server';
 import { cookies } from 'next/headers';
 import { NextRequest } from 'next/server';

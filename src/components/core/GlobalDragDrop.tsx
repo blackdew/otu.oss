@@ -7,7 +7,7 @@ import { currentPageState, openSnackbarState, runSyncState } from '@/lib/jotai';
 import { useRouter } from 'next/navigation';
 import { useLingui } from '@lingui/react/macro';
 import { useCreate } from '@/components/home2/editor/hooks/useCreate';
-import { processFile, fetchCaption, generatePageId, getUserId } from '@/functions/uploadcare';
+import { processFile, fetchCaption, generatePageId, getUserId } from '@/functions/media/uploadcare';
 import DOMPurify from 'dompurify';
 import { fetchTitling } from '@/functions/ai';
 import UploadIcon from '@mui/icons-material/Upload';

@@ -1,5 +1,5 @@
 import { TEXT_MODEL_NAME, parseLocaleFromAcceptLanguage } from '@/functions/constants';
-import errorResponse, { successResponse } from '@/functions/response';
+import errorResponse, { successResponse } from '@/functions/api/response';
 import { createClient } from '@/supabase/utils/server';
 import { getServerI18n } from '@/lib/lingui';
 import { msg } from '@lingui/core/macro';

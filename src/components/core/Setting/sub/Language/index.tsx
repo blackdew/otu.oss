@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 import { getUserLocale, setUserLocale } from '@/i18n-server';
 import { Locale } from '@/functions/constants';
-import { getClientLocale, setClientLocale } from '@/functions/cookie';
+import { getClientLocale, setClientLocale } from '@/functions/utils/cookie';
 import { useRouter } from 'next/navigation';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 

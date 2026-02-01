@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { updateSession } from './supabase/utils/middleware';
-import { generateIdentifier } from './src/functions/logHeader';
+import { generateIdentifier } from './src/functions/api/logHeader';
 import { reportValue } from '@vercel/flags';
 import { middleWareLogger } from './src/debug/middleware';
 import { defaultLanguage, supportedLanguages } from './src/functions/constants';

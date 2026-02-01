@@ -12,7 +12,7 @@ import {
 import { POST } from './route';
 import { NextRequest } from 'next/server';
 import { createSuperClient } from '@/supabase/utils/super';
-import * as uploadcare from '@/functions/uploadcare';
+import * as uploadcare from '@/functions/media/uploadcare';
 import { testLogger } from '@/debug/test';
 
 // Uploadcare deleteFiles 함수 모킹 (ESM 호환)

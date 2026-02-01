@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { EnterIconButton } from '../../../common/button/EnterIconButton';
 import { OptionItem, isDarkModeAtom, openConfirmState } from '@/lib/jotai';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { forceScroll } from '@/functions/forceRepaint';
+import { forceScroll } from '@/functions/utils/forceRepaint';
 import { useRouter } from 'next/navigation';
 import { GoToBottom } from '../Conversation/GoToBottom';
 import { useLingui } from '@lingui/react/macro';

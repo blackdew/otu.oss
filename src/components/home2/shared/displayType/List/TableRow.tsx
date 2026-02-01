@@ -1,4 +1,4 @@
-import { convertDateFormat } from '@/functions/date';
+import { convertDateFormat } from '@/functions/utils/date';
 import s from './style.module.css';
 import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { CircleIcon } from '@/components/common/icons/CircleIcon';

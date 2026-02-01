@@ -24,9 +24,9 @@ import debounce from 'lodash/debounce';
 import { useCallback, useEffect, useRef } from 'react';
 import { syncLogger } from '@/debug/sync';
 import { createClient } from '@/supabase/utils/client';
-import { clearOnlyWatermelonDB, clearStorage } from '../clearStorage';
-import { SESSION_USER_ID_FOR_CHECK_SYNC } from '../constants';
-import { getCookie } from '../cookie';
+import { clearOnlyWatermelonDB, clearStorage } from '@/functions/storage/clearStorage';
+import { SESSION_USER_ID_FOR_CHECK_SYNC } from '@/functions/constants';
+import { getCookie } from '@/functions/utils/cookie';
 import { redirect } from 'next/navigation';
 
 export const useSync = () => {

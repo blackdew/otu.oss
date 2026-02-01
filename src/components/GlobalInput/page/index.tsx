@@ -20,7 +20,7 @@ import { parseTitleAndBody } from './parseTitleAndBody';
 import Plus from '@/public/icon/plus';
 import dynamic from 'next/dynamic';
 import { list } from '@/watermelondb/control/Page';
-import { fetchCaption } from '@/functions/uploadcare';
+import { fetchCaption } from '@/functions/media/uploadcare';
 import { isDevelopment } from '@/utils/environment';
 import { editorOcrLogger } from '@/debug/editor';
 import { useNavigation } from '@/hooks/useNavigation';

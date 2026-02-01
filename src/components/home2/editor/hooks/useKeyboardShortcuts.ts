@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { editorViewLogger } from '@/debug/editor';
-import { detectOS } from '@/functions/detectos';
+import { detectOS } from '@/functions/env/detectos';
 
 /**
  * 키보드 단축키와 가상 키보드 관련 로직을 처리하는 훅

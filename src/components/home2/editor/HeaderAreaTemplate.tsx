@@ -1,5 +1,5 @@
 import { editorViewLogger } from '@/debug/editor';
-import { formatDate, formatDateTime } from '@/functions/date';
+import { formatDate, formatDateTime } from '@/functions/utils/date';
 import IconButton from '@mui/material/IconButton';
 import Skeleton from '@mui/material/Skeleton';
 import Tooltip from '@mui/material/Tooltip';

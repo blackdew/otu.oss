@@ -28,7 +28,7 @@ jest.mock('@/components/core/WebViewCommunicator', () => ({
 }));
 
 // linkify 함수 모킹
-jest.mock('@/functions/linkify', () => ({
+jest.mock('@/functions/utils/linkify', () => ({
     linkify: jest.fn((text) => text),
 }));
 
