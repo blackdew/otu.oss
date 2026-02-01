@@ -278,13 +278,17 @@ return errorResponse(
 ### 테스트
 
 - **테스트 프레임워크**: Jest (⚠️ Vitest 아님!)
-- **테스트 파일 위치**:
-    - `*.test.ts` - 일반 테스트
-    - `__tests__/` - 디렉토리별 테스트
+- **테스트 파일 위치**: `__tests__/` 디렉토리로 통일 (#55)
+    - 각 도메인/기능 디렉토리의 `__tests__/` 하위에 테스트 파일 위치
+    - 예시:
+        - `src/watermelondb/__tests__/sync.test.ts`
+        - `app/api/sync/__tests__/sync-database.test.ts`
+        - `src/hooks/__tests__/useReminderList.test.tsx`
+        - `src/functions/media/__tests__/thumbnail.test.ts`
 - **테스트 작성 시**:
     - `@jest-environment node` 주석 사용 (서버 환경)
     - `@/debug/test`의 `testLogger` 사용
-    - 기존 테스트: `src/watermelondb/sync.test.ts`, `app/api/sync/__tests__/`
+    - import 경로: `__tests__/` 이동 시 상대 경로 조정 필요 (`./ → ../`)
 
 ## 중요 개발 노트
 
