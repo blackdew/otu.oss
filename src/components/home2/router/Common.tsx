@@ -7,7 +7,7 @@ import GlobalUI from '@/components/core/GlobalUI';
 import ReminderTicker from '@/components/common/ReminderTicker';
 import GlobalInput from '@/components/GlobalInput';
 import { Outlet } from 'react-router-dom';
-import { useDeepLinkWebView } from '@/functions/hooks/useDeepLinkWebView';
+import { useDeepLinkWebView } from '@/hooks/useDeepLinkWebView';
 
 export default function CommonLayout() {
     const { reminders } = useReminderTicker(30);

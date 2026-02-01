@@ -131,13 +131,14 @@ src/
 │   ├── core/          # 핵심 컴포넌트 (Setting, fileUploader 등)
 │   └── layout/        # 레이아웃 컴포넌트
 │
+├── hooks/             # 커스텀 훅 (React 훅)
+│
 ├── functions/
 │   ├── ai/            # AI 서비스 (임베딩, 타이틀링)
 │   ├── api/           # API 응답 헬퍼 (response, error)
-│   ├── auth/          # 인증 관련 (requireLogin, checkSuperuser)
+│   ├── auth/          # 인증 관련 (requireLogin, checkSuperuser, addBetaTester)
 │   ├── env/           # 환경 탐지 (detectEnvironment, isMobile)
 │   ├── folder/        # 폴더 CRUD
-│   ├── hooks/         # 커스텀 훅
 │   ├── media/         # 미디어 처리 (thumbnail, uploadcare)
 │   ├── storage/       # 스토리지 관리 (clearStorage)
 │   ├── sync/          # 동기화 트리거

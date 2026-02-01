@@ -156,7 +156,7 @@ describe('PR #1223 - 동기화 시스템 검증', () => {
     });
 
     test('useSync 훅에서 userType 관련 코드가 없어야 함', () => {
-        const useSyncPath = path.join(process.cwd(), 'src/functions/hooks/useSync.tsx');
+        const useSyncPath = path.join(process.cwd(), 'src/hooks/useSync.tsx');
         const content = fs.readFileSync(useSyncPath, 'utf-8');
 
         expect(content).not.toMatch(/getUserType/);

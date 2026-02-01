@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import s from './style.module.css';
 import '@/app/globals.css';
-import { useCalculateViewportHeight } from '@/functions/hooks/useCalculateViewportHeight';
+import { useCalculateViewportHeight } from '@/hooks/useCalculateViewportHeight';
 export default function ByePage() {
     useCalculateViewportHeight();
     //

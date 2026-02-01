@@ -1,6 +1,6 @@
 'use client';
 
-import { useSync } from '@/functions/hooks/useSync';
+import { useSync } from '@/hooks/useSync';
 import { useCheckHomeAuth } from '@/components/core/Auth';
 import { useEffect, useState, useRef } from 'react';
 import { createClient } from '@/supabase/utils/client';
@@ -8,8 +8,8 @@ import dynamic from 'next/dynamic';
 import { renderLogger } from '@/debug/render';
 import { enhancedRenderLogger } from '@/debug/render';
 import { useLocale } from '@/hooks/useLocale';
-import useCheckWatermelondb from '@/functions/hooks/useCheckWatermelondb';
-import { useDeepLinkWebView } from '@/functions/hooks/useDeepLinkWebView';
+import useCheckWatermelondb from '@/hooks/useCheckWatermelondb';
+import { useDeepLinkWebView } from '@/hooks/useDeepLinkWebView';
 import { syncLogger } from '@/debug/sync';
 import { database } from '@/watermelondb';
 import { runSyncState } from '@/lib/jotai';

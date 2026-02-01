@@ -6,10 +6,10 @@ import '@/app/globals.css';
 
 import { WebViewCommunicator } from '@/components/core/WebViewCommunicator';
 import { AuthStateChangeAction } from '@/components/core/AuthStateChangeAction';
-import { useCalculateViewportHeight } from '@/functions/hooks/useCalculateViewportHeight';
-import { useRequestStartWebviewToNative } from '@/functions/hooks/useRequestStartWebviewToNative';
+import { useCalculateViewportHeight } from '@/hooks/useCalculateViewportHeight';
+import { useRequestStartWebviewToNative } from '@/hooks/useRequestStartWebviewToNative';
 import { renderLogger } from '@/debug/render';
-import useEruda from '@/functions/hooks/useEruda';
+import useEruda from '@/hooks/useEruda';
 import { RootLayoutProvider } from '@/app/RootLayoutProvider';
 
 function Layout({ children }: { children: React.ReactNode }) {

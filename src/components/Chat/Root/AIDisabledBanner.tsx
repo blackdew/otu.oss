@@ -1,6 +1,6 @@
 'use client';
 
-import { useAIStatus } from '@/functions/hooks/useAIStatus';
+import { useAIStatus } from '@/hooks/useAIStatus';
 import { useLingui } from '@lingui/react/macro';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 

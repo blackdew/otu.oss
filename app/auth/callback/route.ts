@@ -1,6 +1,6 @@
 import { cookies, headers } from 'next/headers';
 import { NextResponse } from 'next/server';
-import { addBetaTester } from '@/functions/hooks/addBetaTester';
+import { addBetaTester } from '@/functions/auth/addBetaTester';
 import { authLogger } from '@/debug/auth';
 import { createClient } from '@/supabase/utils/server';
 import { handleNewUserSetup } from '@/functions/sample/handleNewUserSetup.server';
