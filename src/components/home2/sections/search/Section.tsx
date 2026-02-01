@@ -2,12 +2,22 @@
 
 import { Routes, Route } from 'react-router-dom';
 import dynamic from 'next/dynamic';
+import Loading from '@/app/(ui)/loading';
+import DynamicLoadError from '../../shared/DynamicLoadError';
 import { SearchList } from './SearchList';
 
 // PageDetail을 동적으로 로드하여 SSR 에러 방지
-const PageDetail = dynamic(() => import('../../shared/PageDetail'), {
-    ssr: false,
-});
+const PageDetail = dynamic(
+    () =>
+        import('../../shared/PageDetail').catch((error) => {
+            console.error('PageDetail 로드 실패:', error);
+            return { default: DynamicLoadError };
+        }),
+    {
+        ssr: false,
+        loading: () => <Loading />,
+    }
+);
 
 // SearchList 컴포넌트 - Page Container 재사용
 
