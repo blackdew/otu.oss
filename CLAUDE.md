@@ -120,6 +120,7 @@ app/
 └── share/             # 페이지 공유 UI
 
 src/
+├── __tests__/         # 프로젝트 레벨 테스트 (통합/크로스 도메인)
 ├── components/
 │   ├── Chat/          # AI 채팅
 │   ├── common/        # 공유 컴포넌트
@@ -147,10 +148,15 @@ src/
 │   ├── sync/          # 동기화 트리거
 │   ├── usage/         # 사용량 추적
 │   ├── utils/         # 범용 유틸 (date, cookie, linkify)
+│   ├── validation/    # 유효성 검사
 │   └── constants.ts   # 전역 상수
 │
+├── fixtures/          # 테스트 픽스처/유틸리티 (테스트 케이스 데이터, HTTP 테스트 등)
 ├── utils/             # 클라이언트 유틸리티 (navigation, haptic 등)
 ├── lib/               # 라이브러리 설정 (jotai, lingui, database)
+├── locales/           # 다국어 번역 파일 (PO 카탈로그)
+├── messages/          # 메시지 정의
+├── types/             # TypeScript 타입 정의
 ├── debug/             # 디버그 로거들
 │
 └── watermelondb/      # 로컬 DB
