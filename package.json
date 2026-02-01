@@ -28,7 +28,7 @@
         "build": "next build",
         "build:inspect": "NODE_OPTIONS=--inspect next build",
         "build:inspect-brk": "NODE_OPTIONS=--inspect-brk next build",
-        "test:middleware": "node src/test/middleware-webhook-exclusion.test.js",
+        "test:middleware": "node src/__tests__/middleware-webhook-exclusion.test.js",
         "test:db": "echo \"🧪 DB 테스트 실행 중...\" && find src/fixtures/db -name '*.pgtap.sql' -type f -exec sh -c 'docker exec -i supabase_db_new-opentutorials psql -U postgres -d postgres < \"$1\" 2>&1 | grep -vE \"^\\s*([-]+|\\(.*row.*\\))$\" | grep -vE \"^\\s+(plan|has_function|is|ok|finish)\\s*$\" | grep -v \"^$\"' _ {} \\; && echo \"✅ DB 테스트 완료\"",
         "test:quota-exceeded": "npx tsx scripts/setup-test-429.ts exceeded",
         "test:quota-reset": "npx tsx scripts/setup-test-429.ts reset",
