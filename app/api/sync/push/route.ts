@@ -205,7 +205,6 @@ export async function POST(req: Request) {
         // 개발환경에서 임베딩을 즉시 실행 (사용자 인증 기반)
         // 참고: embedding-scheduler는 사용자 트리거 방식으로 변경됨 (Cron 의존성 제거)
         // 개발환경에서는 쿠키를 전달하여 인증을 처리합니다.
-        // if (false && process.env.NODE_ENV === "development") {
         if (process.env.NODE_ENV === 'development') {
             syncLogger(
                 '개발환경에서는 즉시 임베딩을 실행합니다. 수정의 경우 지정된 시간 이후에 실행됩니다.'

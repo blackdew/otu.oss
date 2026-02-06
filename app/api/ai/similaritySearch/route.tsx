@@ -15,7 +15,6 @@
  * - 페이지 600자 미만: 전체 내용을 참조로 사용
  * - 검색 결과 없음: 본문 600자 잘라서 참조
  */
-import { cookies } from 'next/headers';
 import { createEmbedding } from '@/functions/ai';
 import errorResponse, { successResponse } from '@/functions/api/response';
 import { chatLogger } from '@/debug/chat';
@@ -51,7 +50,6 @@ export async function POST(req: Request) {
             new Error('session.data.session is null')
         );
     }
-    const c = await cookies();
     const body = await req.json();
     const page_id = body.page_id;
     const count = body.count || 3;

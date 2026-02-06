@@ -54,7 +54,7 @@ describe('Sync Push Route Integration - 폴더/페이지 동시 생성', () => {
     test('새 폴더와 해당 폴더를 참조하는 페이지를 동시에 push하면 성공하고 실제 DB에 생성된다', async () => {
         if (!TEST_USER_ID) throw new Error('TEST_USER_ID is not set');
 
-        const { POST } = await import('./route');
+        const { POST } = await import('../route');
 
         const folderId = `550e8400-e29b-41d4-a716-${(Date.now() + 1).toString().slice(-12).padStart(12, '0')}`;
         const pageId = `550e8400-e29b-41d4-a716-${(Date.now() + 2).toString().slice(-12).padStart(12, '0')}`;

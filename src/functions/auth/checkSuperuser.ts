@@ -43,10 +43,3 @@ async function _checkIsSuperuser(): Promise<boolean> {
 export const checkIsSuperuser = throttle(_checkIsSuperuser, 10 * 60 * 1000, {
     trailing: false, // 마지막 호출은 무시 (leading만 실행)
 });
-
-/**
- * superuser 체크 throttle을 무효화하는 함수
- */
-export function invalidateSuperuserCache(): void {
-    checkIsSuperuser.flush();
-}

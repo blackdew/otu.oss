@@ -80,11 +80,3 @@ export function useAIStatus() {
 
     return { status, isLoading };
 }
-
-/**
- * AI 상태 캐시를 초기화하는 함수
- * 설정이 변경된 경우 호출하여 새로운 상태를 가져올 수 있습니다.
- */
-export function clearAIStatusCache() {
-    cachedStatus = null;
-}

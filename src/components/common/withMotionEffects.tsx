@@ -269,29 +269,6 @@ export const motionPresets = {
         animate: { opacity: 1, y: 0 },
         transition: { duration: 0.2 },
     },
-
-    // 카드 효과
-    card: {
-        hover: { y: -5, scale: 1.02 },
-        tap: { scale: 0.98 },
-        initial: { opacity: 0, y: 20 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.4 },
-    },
-
-    // 아이콘 효과
-    icon: {
-        hover: { rotate: 5, scale: 1.1 },
-        tap: { scale: 1.2 },
-        transition: { duration: 0.2 },
-    },
-
-    // 페이드 효과
-    fade: {
-        initial: { opacity: 0 },
-        animate: { opacity: 1 },
-        transition: { duration: 0.5 },
-    },
 } as const;
 
 // 편의를 위한 사전 정의된 HOC들
@@ -300,12 +277,3 @@ export const withButtonMotion = (component: ComponentType<any>) =>
 
 export const withStrongTapMotion = (component: ComponentType<any>) =>
     withMotionEffects(component, motionPresets.strongTap);
-
-export const withCardMotion = (component: ComponentType<any>) =>
-    withMotionEffects(component, motionPresets.card);
-
-export const withIconMotion = (component: ComponentType<any>) =>
-    withMotionEffects(component, motionPresets.icon);
-
-export const withFadeMotion = (component: ComponentType<any>) =>
-    withMotionEffects(component, motionPresets.fade);
