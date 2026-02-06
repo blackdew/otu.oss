@@ -44,7 +44,6 @@ export const privacyPolicy: docs = {
         서비스 성능 모니터링 및 오류 분석:
         <ul>
           <li>AWS Amplify (SOC 1, SOC 2, ISO 27001)</li>
-          <li>Sentry (SOC 2 Type 2 및 GDPR 준수)</li>
           <li>Google Analytics (SOC 2 Type 2 및 ISO 27001)</li>
           <li>Vercel Analytics (SOC 2 Type 2 및 GDPR 준수)</li>
         </ul>

@@ -10,6 +10,9 @@ const customJestConfig = {
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
     testEnvironment: 'jsdom',
     moduleNameMapper: {
+        // 테스트용 모킹 모듈 (실제 모듈보다 우선)
+        '^@/lib/lingui$': '<rootDir>/src/lib/__mocks__/lingui.ts',
+        // 실제 모듈 매핑
         '^@/lib/(.*)$': '<rootDir>/src/lib/$1',
         '^@/components/(.*)$': '<rootDir>/src/components/$1',
         '^@/functions/(.*)$': '<rootDir>/src/functions/$1',
@@ -53,5 +56,10 @@ module.exports = async () => {
         '/node_modules/(?!(p-map)/)',
         '^.+\\.module\\.(css|sass|scss)$',
     ];
+    // 테스트용 모킹 모듈을 moduleNameMapper 앞에 추가 (우선순위 보장)
+    jestConfig.moduleNameMapper = {
+        '^@/lib/lingui$': '<rootDir>/src/lib/__mocks__/lingui.ts',
+        ...jestConfig.moduleNameMapper,
+    };
     return jestConfig;
 };

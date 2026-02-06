@@ -153,12 +153,12 @@ export async function fetchTitling(id, body) {
         const responseData = await response.json();
         return responseData;
     } catch (e) {
-        // 한도 초과 에러는 예상된 사용자 행동이므로 Sentry에 보고하지 않음
+        // 한도 초과 에러는 예상된 사용자 행동이므로 별도 처리
         if (e.isQuotaExceeded) {
             throw e;
         }
 
-        // 이미 처리되지 않은 에러는 Sentry로 보고
+        // 처리되지 않은 에러 로깅
         if (!e.message || !e.message.includes('Titling API 응답 오류')) {
             console.error('AI error:', e, {
                 tags: {

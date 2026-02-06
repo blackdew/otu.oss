@@ -255,22 +255,6 @@ async function embedAndInsertDocuments(
         const converted = result.embeddings[0];
         const tokens = result.meta.billed_units.input_tokens;
         await insertData(supabase, origin, converted, type, title, id, user_id);
-        // supabase
-        //   .from("api_usage_raw")
-        //   .insert({
-        //     api_type_id: 5,
-        //     amount: tokens,
-        //     usage_purpose: 1,
-        //     user_id,
-        //   })
-        //   //@ts-ignore
-        //   .then(({ error: rawError }) => {
-        //     if (rawError) {
-        //       reportErrorToSentry(
-        //         "api_usage_raw를 기록하는 과정에서 에러가 발생했습니다.",
-        //       );
-        //     }
-        //   });
     }
 }
 

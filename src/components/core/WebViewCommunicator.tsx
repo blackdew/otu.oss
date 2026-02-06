@@ -110,7 +110,6 @@ export function communicateWithAppsWithCallback(funcName: string, data?: any, ca
         }
     } catch (error) {
         console.error(`WebView communication error for "${funcName}":`, error);
-        console.error('WebViewCommunicator error:', error); // Sentry에 에러 보고
     }
 }
 

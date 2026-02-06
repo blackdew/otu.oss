@@ -1,7 +1,5 @@
 import { corsHeaders } from '../_shared/cors.ts';
 
-// import * as Sentry from "@sentry/nextjs";
-// import { NextResponse } from "next/server";
 /**
  * 서버 측 에러 응답을 생성합니다.
  *
@@ -18,9 +16,6 @@ function errorResponse(
     { message, meta = {}, errorCode = 'SERVER_SIDE_ERROR', status = 500, data = {} },
     error: any
 ) {
-    // Sentry로 에러 전송
-    // Sentry.captureException(error);
-
     // 응답 데이터 구성
     const responseData = {
         status: status,

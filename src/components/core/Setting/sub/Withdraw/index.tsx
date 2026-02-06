@@ -50,15 +50,13 @@ export function Withdraw() {
                                         }
                                         if (status === 200) {
                                             // OTUID 쿠키 삭제 (미들웨어의 로그인 풀림 감지 방지)
-                                            // 탈퇴는 정상적인 로그아웃이므로 Sentry에 보고되지 않도록 쿠키를 먼저 삭제
                                             document.cookie = 'OTUID=; path=/; max-age=0';
 
                                             const supabase = createClient();
                                             await supabase.auth.signOut({
                                                 scope: 'global',
                                             });
-                                            // Race condition 방지: signOut 후 즉시 리다이렉트
-                                            // (5초 대기 제거 - useCheckHomeAuth의 fetchUserId 호출로 인한 Sentry 에러 방지)
+                                            // signOut 후 즉시 리다이렉트
                                             router.push('/welcome');
                                         }
                                     },

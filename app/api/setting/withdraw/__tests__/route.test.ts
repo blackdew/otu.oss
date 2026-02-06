@@ -29,11 +29,6 @@ jest.mock('@/lib/lingui', () => ({
     }),
 }));
 
-// Sentry 모킹
-jest.mock('@sentry/nextjs', () => ({
-    captureException: jest.fn(),
-}));
-
 // 디버그 로거 모킹
 jest.mock('@/debug/withdraw', () => ({
     withdrawLogger: jest.fn(),
@@ -51,7 +46,9 @@ describe('POST /api/setting/withdraw - 통합 테스트', () => {
         });
 
         // deleteFiles 모킹 초기화 (requireMock로 안전하게 접근)
-        const ucMock = jest.requireMock('@/functions/uploadcare') as { deleteFiles: jest.Mock };
+        const ucMock = jest.requireMock('@/functions/media/uploadcare') as {
+            deleteFiles: jest.Mock;
+        };
         deleteFilesMock = ucMock.deleteFiles;
         deleteFilesMock.mockReset();
         deleteFilesMock.mockImplementation(() => Promise.resolve());
@@ -302,7 +299,9 @@ describe('POST /api/setting/withdraw - 통합 테스트', () => {
 
         // Then: 성공 응답 확인
         expect(response.status).toBe(200);
-        expect(responseJson.message).toBe('setting.withdraw.success');
+        expect(responseJson.message).toBe(
+            '성공적으로 처리했습니다. 그 동안 이용해주셔서 감사합니다.'
+        );
 
         // Uploadcare 파일 삭제 함수가 호출되었는지 확인 (실제 파일이 있을 때만)
         if (deleteFilesMock.mock.calls.length > 0) {
@@ -352,7 +351,9 @@ describe('POST /api/setting/withdraw - 통합 테스트', () => {
 
         // Then: 파일 삭제 실패에도 불구하고 탈퇴는 성공해야 함
         expect(response.status).toBe(200);
-        expect(responseJson.message).toBe('setting.withdraw.success');
+        expect(responseJson.message).toBe(
+            '성공적으로 처리했습니다. 그 동안 이용해주셔서 감사합니다.'
+        );
 
         // 사용자가 삭제되었는지 확인
         const { data: userData } = await superClient.auth.admin.getUserById(testUserId);

@@ -276,7 +276,6 @@ export async function POST(req: Request) {
         });
     } catch (error: any) {
         syncLogger('Sync push error:', error);
-        // Sentry에 오류 및 컨텍스트 정보 전송
         syncLogger('sync_push_error', {
             user_id: user_id,
             lastPulledAt: lastPulledAt,
