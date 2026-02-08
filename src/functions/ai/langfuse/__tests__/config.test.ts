@@ -1,13 +1,14 @@
 /**
  * @jest-environment node
  */
-import { describe, test, expect, beforeEach, afterAll } from '@jest/globals';
+import { describe, test, expect, beforeEach, afterAll, jest } from '@jest/globals';
 import {
     loadLangfuseConfig,
     isLangfuseEnabled,
     getLangfuse,
     getLangfuseDisabledReason,
     shutdownLangfuse,
+    withLangfuse,
 } from '../config';
 
 describe('Langfuse Config', () => {
@@ -130,6 +131,40 @@ describe('Langfuse Config', () => {
             const reason = getLangfuseDisabledReason();
 
             expect(reason).toContain('PUBLIC_KEY');
+        });
+    });
+
+    describe('withLangfuse', () => {
+        test('비활성화 시 콜백이 호출되지 않음', () => {
+            delete process.env.LANGFUSE_PUBLIC_KEY;
+            delete process.env.LANGFUSE_SECRET_KEY;
+
+            const callback = jest.fn();
+            withLangfuse(callback);
+
+            expect(callback).not.toHaveBeenCalled();
+        });
+
+        test('활성화 시 콜백이 Langfuse 인스턴스와 함께 호출됨', () => {
+            process.env.LANGFUSE_PUBLIC_KEY = 'pk-test';
+            process.env.LANGFUSE_SECRET_KEY = 'sk-test';
+
+            const callback = jest.fn();
+            withLangfuse(callback);
+
+            expect(callback).toHaveBeenCalledTimes(1);
+            expect(callback.mock.calls[0][0]).not.toBeNull();
+        });
+
+        test('콜백 에러를 삼키고 예외를 던지지 않음', () => {
+            process.env.LANGFUSE_PUBLIC_KEY = 'pk-test';
+            process.env.LANGFUSE_SECRET_KEY = 'sk-test';
+
+            expect(() => {
+                withLangfuse(() => {
+                    throw new Error('test error');
+                });
+            }).not.toThrow();
         });
     });
 

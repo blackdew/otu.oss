@@ -111,13 +111,19 @@ export function startRAGTrace(input: RAGTraceInput): RAGTraceHandle {
     }
 
     // 트레이스 생성
-    const trace = langfuse.trace({
-        name: 'rag-pipeline',
-        userId: input.userId,
-        sessionId: input.sessionId,
-        input: { query: input.query },
-        metadata: input.metadata,
-    });
+    let trace;
+    try {
+        trace = langfuse.trace({
+            name: 'rag-pipeline',
+            userId: input.userId,
+            sessionId: input.sessionId,
+            input: { query: input.query },
+            metadata: input.metadata,
+        });
+    } catch (error) {
+        aiLogger('Langfuse trace creation failed: %s', (error as Error)?.message);
+        return noopTraceHandle;
+    }
 
     const traceId = trace.id;
 
@@ -189,12 +195,16 @@ export function startRAGTrace(input: RAGTraceInput): RAGTraceHandle {
         },
 
         complete: async (params?: TraceCompleteParams) => {
-            if (params?.score !== undefined) {
-                trace.score({
-                    name: 'user-feedback',
-                    value: params.score,
-                    comment: params.comment,
-                });
+            try {
+                if (params?.score !== undefined) {
+                    trace.score({
+                        name: 'user-feedback',
+                        value: params.score,
+                        comment: params.comment,
+                    });
+                }
+            } catch (error) {
+                aiLogger('Langfuse score error: %s', (error as Error)?.message);
             }
 
             // 트레이스 데이터 전송

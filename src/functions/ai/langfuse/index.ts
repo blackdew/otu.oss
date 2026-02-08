@@ -19,6 +19,7 @@ export {
     isLangfuseEnabled,
     getLangfuseDisabledReason,
     shutdownLangfuse,
+    withLangfuse,
 } from './config';
 export type { LangfuseConfig } from './config';
 
