@@ -123,6 +123,27 @@ export function getLangfuseDisabledReason(): string | null {
 }
 
 /**
+ * Langfuse 가드 + flush 보일러플레이트를 공통 처리합니다.
+ * Langfuse가 비활성화되었거나 인스턴스를 얻을 수 없으면 콜백을 실행하지 않습니다.
+ */
+export function withLangfuse(callback: (langfuse: Langfuse) => void): void {
+    if (!isLangfuseEnabled()) return;
+    const langfuse = getLangfuse();
+    if (!langfuse) return;
+
+    try {
+        callback(langfuse);
+    } catch (error) {
+        aiLogger('Langfuse callback error: %s', (error as Error)?.message);
+        return;
+    }
+
+    langfuse.flushAsync().catch((error) => {
+        aiLogger('Langfuse flush failed: %s', error?.message);
+    });
+}
+
+/**
  * Langfuse 인스턴스를 종료합니다.
  * 서버 종료 시 호출해야 합니다.
  */
