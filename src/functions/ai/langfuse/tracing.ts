@@ -7,7 +7,7 @@
  * - LLM 생성 (Generation)
  */
 
-import { getLangfuse, isLangfuseEnabled } from './config';
+import { getLangfuse, isLangfuseEnabled, withLangfuse } from './config';
 import { aiLogger } from '@/debug/ai';
 import type { CRAGPipelineResult } from '../crag/pipeline';
 
@@ -111,13 +111,19 @@ export function startRAGTrace(input: RAGTraceInput): RAGTraceHandle {
     }
 
     // 트레이스 생성
-    const trace = langfuse.trace({
-        name: 'rag-pipeline',
-        userId: input.userId,
-        sessionId: input.sessionId,
-        input: { query: input.query },
-        metadata: input.metadata,
-    });
+    let trace;
+    try {
+        trace = langfuse.trace({
+            name: 'rag-pipeline',
+            userId: input.userId,
+            sessionId: input.sessionId,
+            input: { query: input.query },
+            metadata: input.metadata,
+        });
+    } catch (error) {
+        aiLogger('Langfuse trace creation failed: %s', (error as Error)?.message);
+        return noopTraceHandle;
+    }
 
     const traceId = trace.id;
 
@@ -125,64 +131,80 @@ export function startRAGTrace(input: RAGTraceInput): RAGTraceHandle {
         traceId,
 
         logRetrieval: (params: RetrievalSpanParams) => {
-            trace.span({
-                name: 'retrieval',
-                input: { query: params.query },
-                output: {
-                    resultCount: params.resultCount,
-                    results: params.results?.map((r) => ({
-                        preview: r.content.substring(0, 100),
-                        similarity: r.similarity,
-                    })),
-                },
-                metadata: {
-                    latencyMs: params.latencyMs,
-                },
-            });
+            try {
+                trace.span({
+                    name: 'retrieval',
+                    input: { query: params.query },
+                    output: {
+                        resultCount: params.resultCount,
+                        results: params.results?.map((r) => ({
+                            preview: r.content.substring(0, 100),
+                            similarity: r.similarity,
+                        })),
+                    },
+                    metadata: {
+                        latencyMs: params.latencyMs,
+                    },
+                });
+            } catch (error) {
+                aiLogger('Langfuse logRetrieval error: %s', (error as Error)?.message);
+            }
         },
 
         logCRAGEvaluation: (params: CRAGSpanParams) => {
-            const { pipelineResult } = params;
-            trace.span({
-                name: 'crag-evaluation',
-                input: {
-                    originalQuery: pipelineResult.state.originalQuery,
-                    currentQuery: pipelineResult.state.currentQuery,
-                },
-                output: {
-                    route: pipelineResult.route,
-                    useReferences: pipelineResult.useReferences,
-                    grade: pipelineResult.state.evaluation?.grade,
-                    score: pipelineResult.state.evaluation?.score,
-                    retryCount: pipelineResult.state.retryCount,
-                },
-                metadata: {
-                    latencyMs: params.latencyMs,
-                    complexity: pipelineResult.state.routing?.complexity,
-                },
-            });
+            try {
+                const { pipelineResult } = params;
+                trace.span({
+                    name: 'crag-evaluation',
+                    input: {
+                        originalQuery: pipelineResult.state.originalQuery,
+                        currentQuery: pipelineResult.state.currentQuery,
+                    },
+                    output: {
+                        route: pipelineResult.route,
+                        useReferences: pipelineResult.useReferences,
+                        grade: pipelineResult.state.evaluation?.grade,
+                        score: pipelineResult.state.evaluation?.score,
+                        retryCount: pipelineResult.state.retryCount,
+                    },
+                    metadata: {
+                        latencyMs: params.latencyMs,
+                        complexity: pipelineResult.state.routing?.complexity,
+                    },
+                });
+            } catch (error) {
+                aiLogger('Langfuse logCRAGEvaluation error: %s', (error as Error)?.message);
+            }
         },
 
         logGeneration: (params: GenerationSpanParams) => {
-            trace.generation({
-                name: 'llm-generation',
-                model: params.model,
-                input: params.prompt,
-                output: params.completion,
-                usage: params.usage,
-                metadata: {
-                    latencyMs: params.latencyMs,
-                },
-            });
+            try {
+                trace.generation({
+                    name: 'llm-generation',
+                    model: params.model,
+                    input: params.prompt,
+                    output: params.completion,
+                    usage: params.usage,
+                    metadata: {
+                        latencyMs: params.latencyMs,
+                    },
+                });
+            } catch (error) {
+                aiLogger('Langfuse logGeneration error: %s', (error as Error)?.message);
+            }
         },
 
         complete: async (params?: TraceCompleteParams) => {
-            if (params?.score !== undefined) {
-                trace.score({
-                    name: 'user-feedback',
-                    value: params.score,
-                    comment: params.comment,
-                });
+            try {
+                if (params?.score !== undefined) {
+                    trace.score({
+                        name: 'user-feedback',
+                        value: params.score,
+                        comment: params.comment,
+                    });
+                }
+            } catch (error) {
+                aiLogger('Langfuse score error: %s', (error as Error)?.message);
             }
 
             // 트레이스 데이터 전송
@@ -205,30 +227,18 @@ export function traceLLMCall(params: {
     latencyMs: number;
     metadata?: Record<string, unknown>;
 }): void {
-    if (!isLangfuseEnabled()) {
-        return;
-    }
-
-    const langfuse = getLangfuse();
-    if (!langfuse) {
-        return;
-    }
-
-    langfuse.generation({
-        name: 'llm-call',
-        model: params.model,
-        input: params.prompt,
-        output: params.completion,
-        usage: params.usage,
-        metadata: {
-            userId: params.userId,
-            latencyMs: params.latencyMs,
-            ...params.metadata,
-        },
-    });
-
-    // 비동기로 전송 (에러 무시)
-    langfuse.flushAsync().catch((error) => {
-        aiLogger('Langfuse flush failed: %s', error?.message);
+    withLangfuse((langfuse) => {
+        langfuse.generation({
+            name: 'llm-call',
+            model: params.model,
+            input: params.prompt,
+            output: params.completion,
+            usage: params.usage,
+            metadata: {
+                userId: params.userId,
+                latencyMs: params.latencyMs,
+                ...params.metadata,
+            },
+        });
     });
 }

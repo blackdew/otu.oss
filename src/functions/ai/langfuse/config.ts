@@ -123,6 +123,29 @@ export function getLangfuseDisabledReason(): string | null {
 }
 
 /**
+ * Langfuse 가드 + 에러 처리 + flush 보일러플레이트를 공통 처리합니다.
+ * - Langfuse 비활성화 시 콜백을 실행하지 않음
+ * - 콜백 실행 중 에러를 catch하여 로깅 (앱에 영향 없음)
+ * - 성공 시 자동으로 flushAsync 호출
+ */
+export function withLangfuse(callback: (langfuse: Langfuse) => void): void {
+    if (!isLangfuseEnabled()) return;
+    const langfuse = getLangfuse();
+    if (!langfuse) return;
+
+    try {
+        callback(langfuse);
+    } catch (error) {
+        aiLogger('Langfuse callback error: %s', (error as Error)?.message);
+        return;
+    }
+
+    langfuse.flushAsync().catch((error) => {
+        aiLogger('Langfuse flush failed: %s', error?.message);
+    });
+}
+
+/**
  * Langfuse 인스턴스를 종료합니다.
  * 서버 종료 시 호출해야 합니다.
  */

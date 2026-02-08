@@ -5,30 +5,7 @@
  * RAGAS 메트릭 통합을 위한 인터페이스를 제공합니다.
  */
 
-import { getLangfuse, isLangfuseEnabled } from './config';
-import { aiLogger } from '@/debug/ai';
-import type { Langfuse } from 'langfuse';
-
-/**
- * Langfuse 가드 + flush 보일러플레이트를 공통 처리합니다.
- * Langfuse가 비활성화되었거나 인스턴스를 얻을 수 없으면 콜백을 실행하지 않습니다.
- */
-function withLangfuse(callback: (langfuse: Langfuse) => void): void {
-    if (!isLangfuseEnabled()) return;
-    const langfuse = getLangfuse();
-    if (!langfuse) return;
-
-    try {
-        callback(langfuse);
-    } catch (error) {
-        aiLogger('Langfuse callback error: %s', (error as Error)?.message);
-        return;
-    }
-
-    langfuse.flushAsync().catch((error) => {
-        aiLogger('Langfuse flush failed: %s', error?.message);
-    });
-}
+import { withLangfuse } from './config';
 
 /**
  * RAGAS 평가 메트릭
