@@ -256,15 +256,17 @@ UPLOADCARE_PRIVATE_KEY=<your-private-key>
 | `OPENAI_API_KEY`                       | AI 사용 시 (개발) | OpenAI API 키 (설정 시 AI 자동 활성화, 프로덕션은 Gateway 사용) |
 | `NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY`    | 이미지 업로드 시  | Uploadcare 공개 키                                              |
 | `UPLOADCARE_PRIVATE_KEY`               | 이미지 삭제 시    | Uploadcare 비공개 키                                            |
-| `NEXT_PUBLIC_PWA_DISABLED`             | -                 | PWA 비활성화 (`true`/`false`, 기본값: `true`)                   |
+| `NEXT_PUBLIC_ENABLE_SOCIAL_LOGIN`      | -                 | 소셜 로그인 표시 여부 (`true`/`false`, 기본값: `false`)         |
+| `CRAG_ENABLED`                         | -                 | CRAG 파이프라인 활성화 (`true`/`false`, 기본값: `false`)        |
+| `LANGFUSE_ENABLED`                     | -                 | Langfuse LLM 모니터링 활성화 (키 미설정 시 자동 비활성화)       |
 
 ### 환경별 설정 권장 사항
 
-| 환경       | OPENAI_API_KEY | SOCIAL_LOGIN | PWA               |
-| ---------- | -------------- | ------------ | ----------------- |
-| 로컬 개발  | 선택 설정      | `false`      | `true` (비활성화) |
-| Preview    | Gateway 사용   | `true`       | `true` (비활성화) |
-| Production | Gateway 사용   | `true`       | `false` (활성화)  |
+| 환경       | OPENAI_API_KEY | SOCIAL_LOGIN |
+| ---------- | -------------- | ------------ |
+| 로컬 개발  | 선택 설정      | `false`      |
+| Preview    | Gateway 사용   | `true`       |
+| Production | Gateway 사용   | `true`       |
 
 > **참고**: `NEXT_PUBLIC_ENABLE_SOCIAL_LOGIN`은 소셜 로그인(Google/GitHub/Apple) 표시 여부를 제어합니다. 이메일 로그인은 항상 활성화되어 있습니다.
 

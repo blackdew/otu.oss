@@ -147,7 +147,7 @@ src/
 ├── hooks/             # 커스텀 React 훅 (useSync, useNavigation 등)
 │
 ├── functions/         # 도메인별 비즈니스 로직
-│   ├── ai/            # AI 서비스 (임베딩, 타이틀링)
+│   ├── ai/            # AI 서비스 (임베딩, 타이틀링, CRAG, Langfuse 트레이싱)
 │   ├── api/           # API 응답 헬퍼 (response, error)
 │   ├── auth/          # 인증 관련 (requireLogin, checkSuperuser)
 │   ├── env/           # 환경 탐지 (detectEnvironment, isMobile)
