@@ -35,11 +35,30 @@ export async function POST(req: NextRequest) {
         return responseByStream(i18n._(msg`채팅 기능을 사용하기 위해서는 로그인이 필요합니다.`));
     }
 
-    const body: askLLMRequestType = await req.json();
+    let body: askLLMRequestType;
+    try {
+        body = await req.json();
+    } catch (parseError) {
+        return errorResponse(
+            {
+                status: 400,
+                errorCode: 'INVALID_JSON',
+                message: i18n._(msg`잘못된 요청 형식입니다.`),
+            },
+            parseError instanceof Error ? parseError : new Error('Invalid JSON body')
+        );
+    }
     aiLogger(`req.json() completed: ${Date.now() - startTime}ms`);
     const { message, references, history } = body;
-    if (message === '') {
-        throw new Error('messages is empty');
+    if (!message) {
+        return errorResponse(
+            {
+                status: 400,
+                errorCode: 'EMPTY_MESSAGE',
+                message: i18n._(msg`메시지를 입력해주세요.`),
+            },
+            new Error('message is required')
+        );
     }
     // AI 기능 활성화 여부 확인
     if (!canUseAI()) {

@@ -146,7 +146,8 @@ src/
 ├── functions/         # 도메인별 비즈니스 로직
 │   ├── ai/            # AI 서비스 (임베딩, 타이틀링, CRAG, Langfuse)
 │   │   ├── crag/      # CRAG 파이프라인 (evaluator, router, pipeline, types)
-│   │   └── langfuse/  # Langfuse 트레이싱 (config, tracing, metrics)
+│   │   ├── langfuse/  # Langfuse 트레이싱 (config, tracing, metrics)
+│   │   └── vercel/    # Vercel AI SDK 유틸 (프롬프트, 스트리밍 응답, 타입)
 │   ├── api/           # API 응답 헬퍼 (response, error)
 │   ├── auth/          # 인증 관련 (requireLogin, checkSuperuser)
 │   ├── env/           # 환경 탐지 (detectEnvironment, isMobile)
@@ -375,7 +376,6 @@ return errorResponse(
 - **Code Splitting**: Next.js dynamic import + React Router lazy
 - **Debounced 함수 통합**: 중복 작업 제거 (예: HTML 변환 한 번만 수행, 모바일 메인 스레드 블로킹 방지)
 - **배치 처리**: PostgreSQL 함수로 다중 업데이트 최적화
-- **Vercel Speed Insights**: 실제 사용자 성능 모니터링
 
 ## 추가 문서 참조
 

@@ -295,8 +295,11 @@ export async function updateSession(request: NextRequest) {
     if (user.data.user) {
         // 로그인 풀림 이슈 방지를 위해 OTUID 쿠키에 사용자 ID 저장
         supabaseResponse.cookies.set('OTUID', user.data.user.id, {
-            expires: new Date('9999-12-31'),
             httpOnly: false,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            maxAge: 60 * 60 * 24 * 365, // 1년
+            path: '/',
         });
     }
 

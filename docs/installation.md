@@ -74,12 +74,22 @@ NEXT_PUBLIC_ENABLE_SOCIAL_LOGIN=false       # true: Google/GitHub/Apple 로그�
 # CRAG (Corrective RAG) 설정 (선택 - AI 기능 활성화 시 RAG 품질 개선)
 # NEXT_PUBLIC_CRAG_ENABLED=true       # 클라이언트 CRAG 파이프라인 활성화 (기본값: false)
 # CRAG_ENABLED=true                   # 서버 CRAG 파이프라인 활성화 (기본값: false)
+# CRAG_RELEVANCE_THRESHOLD=0.7        # 관련성 판단 임계값 (기본값: 0.7)
+# CRAG_AMBIGUOUS_THRESHOLD=0.4        # 모호함 판단 임계값 (기본값: 0.4)
+# CRAG_MAX_RETRIES=2                  # 최대 재시도 횟수 (기본값: 2)
+# CRAG_ADAPTIVE_ROUTING=true          # 적응형 라우팅 활성화 (기본값: true)
 
 # Langfuse 설정 (선택 - AI 트레이싱/메트릭 수집)
 # LANGFUSE_ENABLED=true               # 키 미설정 시 자동 비활성화
 # LANGFUSE_PUBLIC_KEY=pk-lf-your-public-key
 # LANGFUSE_SECRET_KEY=sk-lf-your-secret-key
 # LANGFUSE_HOST=https://cloud.langfuse.com
+
+# Supabase Auth 디버그 (선택)
+# NEXT_PUBLIC_SUPABASE_AUTH_DEBUG_ENABLED=true  # Auth 관련 디버그 로그 (기본값: false)
+
+# 안드로이드 앱 연동 (선택)
+# NEXT_PUBLIC_ANDROID_sha256_cert_fingerprints=  # Android App Links 인증용
 
 # 디버그 로깅 (기본값: 비활성화)
 # 개발 중 특정 모듈의 로그를 보려면 활성화하세요.

@@ -35,20 +35,12 @@ export async function createClient(
 
 export const fetchUserId = async () => {
     const supabase = await createClient();
-    try {
-        const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
-        if (sessionError) {
-            throw new Error(`Session error: ${sessionError.message}`);
-        }
-        if (!sessionData.session) {
-            throw new Error('No active session found');
-        }
-        if (!sessionData.session.user) {
-            throw new Error('No user associated with the session');
-        }
-        const userId = sessionData.session.user.id;
-        return userId;
-    } catch (error) {
-        throw error;
+    const { data, error } = await supabase.auth.getUser();
+    if (error) {
+        throw new Error(`Auth error: ${error.message}`);
     }
+    if (!data.user) {
+        throw new Error('No authenticated user found');
+    }
+    return data.user.id;
 };

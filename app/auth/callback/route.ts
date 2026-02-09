@@ -54,8 +54,11 @@ export async function GET(request: Request) {
         }
         // 로그인 풀림 이슈를 해결하기 위해 쿠키에 otuid를 저장
         cookieStore.set('OTUID', userData.user.id, {
-            expires: new Date('9999-12-31'),
             httpOnly: false,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            maxAge: 60 * 60 * 24 * 365, // 1년
+            path: '/',
         });
 
         // 신규 사용자 설정 (usage 레코드 추가 + 샘플 페이지 생성)

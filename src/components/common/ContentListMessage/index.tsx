@@ -1,5 +1,6 @@
 import { useAtom } from 'jotai';
 import { contentListMessageState } from '@/lib/jotai';
+import DOMPurify from 'dompurify';
 
 export default function ContentListMessage() {
     const [contentListMessage, setContentListMessage] = useAtom(contentListMessageState);
@@ -34,7 +35,7 @@ export default function ContentListMessage() {
             >
                 <div
                     dangerouslySetInnerHTML={{
-                        __html: contentListMessage,
+                        __html: DOMPurify.sanitize(contentListMessage),
                     }}
                 ></div>
             </div>
