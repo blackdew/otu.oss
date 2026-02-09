@@ -137,8 +137,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 ## 브랜치 전략
 
 - **`main`**: 프로덕션 배포 브랜치 (직접 작업 금지)
-- **`dev`**: 개발 브랜치
-- **`feature/*`**: 기능 개발 브랜치
+- **`feature/*`**: 기능 개발 브랜치 (`main`에서 분기)
 
 ## 디렉토리 구조
 

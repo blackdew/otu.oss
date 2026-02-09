@@ -26,23 +26,23 @@ import { runCRAGPipeline, DEFAULT_CRAG_CONFIG } from '@/functions/ai/crag';
 import type { CRAGConfig, CRAGStage } from '@/functions/ai/crag';
 
 const welcomeMessages = [''];
+const askLLMContextInit: askLLMContext = {
+    message: '',
+    references: [],
+    history: [],
+    option: {
+        ai: null,
+        rag: 'none',
+    },
+};
 
-let reader: ReadableStreamDefaultReader<Uint8Array>;
 export default function Input({ showScrollButton }: { showScrollButton: boolean }) {
+    const readerRef = useRef<ReadableStreamDefaultReader<Uint8Array> | null>(null);
     const { t } = useLingui();
     const [chatSession, setAiSession] = useAtom(chatSessionState);
     const [chatMessages, setChatMessages] = useAtom(chatMessagesState);
     const currentPage = useAtomValue(currentPageState);
     const openSnackbar = useSetAtom(openSnackbarState);
-    const askLLMContextInit = {
-        message: '',
-        references: [],
-        history: [],
-        option: {
-            ai: null,
-            rag: 'none',
-        },
-    };
     const askLLMContextRef = useRef<askLLMContext>(askLLMContextInit);
     const { add, run, reset } = useChatProcess();
     const [placeholderMessage, setPlaceholderMessage] = useState<string>(
@@ -325,18 +325,18 @@ export default function Input({ showScrollButton }: { showScrollButton: boolean 
     async function readResponse(response: Response) {
         chatLogger('readResponse start', 'response', response);
         const id = ulid();
-        if (reader) {
-            reader.cancel();
+        if (readerRef.current) {
+            readerRef.current.cancel();
         }
         if (response.body) {
-            reader = response.body.getReader();
+            readerRef.current = response.body.getReader();
         }
         let result = '';
         const decoder = new TextDecoder();
 
         let first = true;
         while (true) {
-            const { value, done } = await reader.read();
+            const { value, done } = await readerRef.current!.read();
             if (done) {
                 chatLogger('readResponse done', 'result', result);
                 return result;

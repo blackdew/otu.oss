@@ -7,13 +7,13 @@ export async function GET(request: Request) {
         // Supabase 클라이언트 생성
         const supabase = await createClient();
 
-        // 세션 확인
+        // 사용자 확인 (서버사이드에서는 getUser()로 JWT를 검증)
         const {
-            data: { session },
-            error: sessionError,
-        } = await supabase.auth.getSession();
+            data: { user },
+            error: userError,
+        } = await supabase.auth.getUser();
 
-        if (sessionError || !session) {
+        if (userError || !user) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
@@ -36,7 +36,7 @@ export async function GET(request: Request) {
         }
 
         // 페이지 소유자 확인
-        if (page.user_id !== session.user.id) {
+        if (page.user_id !== user.id) {
             return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
         }
 

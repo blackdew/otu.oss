@@ -119,8 +119,7 @@ export async function POST(req: NextRequest) {
             for (const page of pages) {
                 if (!page?.body) continue;
                 // body에서 모든 uploadcare 파일 링크의 uuid 추출
-                let match;
-                while ((match = uuidRegex.exec(page.body)) !== null) {
+                for (const match of page.body.matchAll(uuidRegex)) {
                     if (match[1]) {
                         fileUUIDSet.add(match[1]);
                     }
@@ -195,7 +194,7 @@ export async function POST(req: NextRequest) {
             .delete()
             .eq('user_id', userId as string);
         if (folderError2) {
-            withdrawLogger('folder 테이블 삭제 중 에러:', folderError);
+            withdrawLogger('folder 테이블 삭제 중 에러:', folderError2);
         } else {
             withdrawLogger('folder 테이블 데이터 삭제 완료');
         }

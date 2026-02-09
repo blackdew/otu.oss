@@ -38,8 +38,30 @@ export async function POST(req: Request) {
         });
     }
 
-    const body = await req.json();
+    let body;
+    try {
+        body = await req.json();
+    } catch {
+        return errorResponse(
+            {
+                status: 400,
+                errorCode: 'INVALID_JSON',
+                message: i18n._(msg`잘못된 요청 형식입니다.`),
+            },
+            new Error('Invalid JSON body')
+        );
+    }
     const contentBody = body.body;
+    if (!contentBody) {
+        return errorResponse(
+            {
+                status: 400,
+                errorCode: 'EMPTY_BODY',
+                message: i18n._(msg`제목을 생성할 본문이 필요합니다.`),
+            },
+            new Error('body is required')
+        );
+    }
 
     const userResponse = await authenticateUser(i18n);
     if ('error' in userResponse) return userResponse.error;

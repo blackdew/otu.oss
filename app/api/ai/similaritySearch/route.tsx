@@ -51,7 +51,29 @@ export async function POST(req: Request) {
             new Error('session.data.session is null')
         );
     }
-    const body = await req.json();
+    let body;
+    try {
+        body = await req.json();
+    } catch {
+        return errorResponse(
+            {
+                status: 400,
+                errorCode: 'INVALID_JSON',
+                message: i18n._(msg`잘못된 요청 형식입니다.`),
+            },
+            new Error('Invalid JSON body')
+        );
+    }
+    if (!body.inputMessage) {
+        return errorResponse(
+            {
+                status: 400,
+                errorCode: 'EMPTY_MESSAGE',
+                message: i18n._(msg`검색할 메시지가 필요합니다.`),
+            },
+            new Error('inputMessage is required')
+        );
+    }
     const page_id = body.page_id;
     const count = body.count || 3;
     const threshold = body.threshold || 0.55;

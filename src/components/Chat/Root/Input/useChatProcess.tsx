@@ -128,17 +128,15 @@ export function useChatProcess() {
             reader = response.body.getReader();
         }
         let result = '';
+        const decoder = new TextDecoder();
 
         let first = true;
         while (true) {
             const { value, done } = await reader.read();
             if (done) {
-                // setSearch((draft) => {
-                //   draft.aiQueue.status = "2_COMPLETE";
-                // });
                 break;
             }
-            result += new TextDecoder('utf-8').decode(value);
+            result += decoder.decode(value, { stream: true });
             //   setSearch((draft) => {
             //     draft.ai[draft.ai.length - 1].responseMessage = result;
             //   });

@@ -8,12 +8,27 @@ import { revalidateTag } from 'next/cache';
 import { z } from 'zod';
 
 /**
+ * 동기화 레코드 검증 — 최소 필수 필드(id, updated_at)가 있는 객체인지 런타임 검증
+ * z.any()와 달리 객체 타입 + 필수 필드 존재를 보장하면서, 하위 함수의 타입 호환성 유지
+ */
+const syncRecordSchema = z
+    .any()
+    .refine(
+        (val) =>
+            typeof val === 'object' &&
+            val !== null &&
+            typeof val.id === 'string' &&
+            'updated_at' in val,
+        { message: 'Sync record must be an object with id (string) and updated_at' }
+    );
+
+/**
  * 동기화 엔티티 스키마 (folder, alarm 공통)
  * created, updated, deleted 배열을 포함하며, 각각 선택적이고 기본값은 빈 배열
  */
 const syncEntitySchema = z.object({
-    created: z.array(z.any()).optional().default([]),
-    updated: z.array(z.any()).optional().default([]),
+    created: z.array(syncRecordSchema).optional().default([]),
+    updated: z.array(syncRecordSchema).optional().default([]),
     deleted: z.array(z.string()).optional().default([]),
 });
 

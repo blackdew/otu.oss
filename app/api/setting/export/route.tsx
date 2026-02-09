@@ -31,12 +31,13 @@ export async function GET(req: Request) {
 
     let user_id = user.id;
 
+    const EXPORT_LIMIT = 5000;
     const { data: page, error } = await supabase
         .from('page')
         .select('id, title, body, is_public, last_viewed_at, created_at, updated_at')
         .eq('user_id', user_id)
         .order('created_at', { ascending: true })
-        .limit(5000);
+        .limit(EXPORT_LIMIT);
 
     if (error) {
         return errorResponse(
@@ -51,9 +52,14 @@ export async function GET(req: Request) {
         );
     }
 
+    const pages = page ?? [];
+    const isTruncated = pages.length >= EXPORT_LIMIT;
+
     return successResponse({
         message: 'success',
-        data: page ? page : [],
-        meta: {},
+        data: pages,
+        meta: {
+            ...(isTruncated && { warning: `Export limited to ${EXPORT_LIMIT} pages` }),
+        },
     });
 }
