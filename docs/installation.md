@@ -76,7 +76,7 @@ NEXT_PUBLIC_ENABLE_SOCIAL_LOGIN=false       # true: Google/GitHub/Apple 로그�
 # CRAG_ENABLED=true                   # 서버 CRAG 파이프라인 활성화 (기본값: false)
 # CRAG_RELEVANCE_THRESHOLD=0.7        # 관련성 판단 임계값 (기본값: 0.7)
 # CRAG_AMBIGUOUS_THRESHOLD=0.4        # 모호함 판단 임계값 (기본값: 0.4)
-# CRAG_MAX_RETRIES=1                  # 최대 재시도 횟수 (기본값: 1)
+# CRAG_MAX_RETRIES=2                  # 최대 재시도 횟수 (기본값: 2)
 # CRAG_ADAPTIVE_ROUTING=true          # 적응형 라우팅 활성화 (기본값: true)
 
 # Langfuse 설정 (선택 - AI 트레이싱/메트릭 수집)

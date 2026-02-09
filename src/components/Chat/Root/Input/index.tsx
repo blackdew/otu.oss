@@ -53,6 +53,14 @@ export default function Input({ showScrollButton }: { showScrollButton: boolean 
             askLLMContextRef.current = askLLMContextInit;
         }
     }, [chatMessages]);
+    useEffect(() => {
+        return () => {
+            if (readerRef.current) {
+                readerRef.current.cancel();
+                readerRef.current = null;
+            }
+        };
+    }, []);
     const { scroll } = useChatScroll();
     function handleChange(value: string) {
         setAiSession((draft: chatSessionState) => {
