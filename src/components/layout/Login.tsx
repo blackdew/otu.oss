@@ -363,7 +363,7 @@ export function Login() {
                         placeholder="email"
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
-                        className="bg-white px-2 rounded-md"
+                        className="bg-white dark:bg-gray-800 text-black dark:text-white px-2 rounded-md"
                         disabled={emailFormLoading}
                     />
                     <Input
@@ -372,7 +372,7 @@ export function Login() {
                         placeholder="password"
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
-                        className="bg-white px-2 rounded-md"
+                        className="bg-white dark:bg-gray-800 text-black dark:text-white px-2 rounded-md"
                         disabled={emailFormLoading}
                     />
                     <div className="flex gap-2 mt-2">
