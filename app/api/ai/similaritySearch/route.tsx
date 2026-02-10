@@ -47,6 +47,7 @@ export async function POST(req: Request) {
         return errorResponse(
             {
                 status: 401,
+                errorCode: 'NEED_LOGIN',
                 message: i18n._(msg`로그인이 필요합니다.`),
             },
             new Error('Authentication failed: user is null')

@@ -2163,6 +2163,10 @@ msgstr "None"
 msgid "질문과 관련된 자료를 찾고 있어요."
 msgstr "Searching for relevant materials."
 
+#: src/components/Chat/Root/Input/index.tsx
+msgid "참조 검색에 실패하여 참조 없이 답변합니다."
+msgstr "Reference search failed. Answering without references."
+
 #: src/components/Chat/Root/Conversation/index.tsx
 msgid "찾았습니다!"
 msgstr "Found!"
