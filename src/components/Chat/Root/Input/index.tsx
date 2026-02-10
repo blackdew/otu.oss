@@ -140,6 +140,9 @@ export default function Input({ showScrollButton }: { showScrollButton: boolean 
             result = cragResult.useReferences ? cragResult.results : [];
         } catch (error) {
             chatLogger('runReference', 'error', error);
+            openSnackbar({
+                message: t`참조 검색에 실패하여 참조 없이 답변합니다.`,
+            });
             return [];
         }
 
@@ -490,6 +493,9 @@ const getSimilarity = async (
                 page_id,
             }),
         });
+        if (!response.ok) {
+            throw new Error(`Similarity search failed: ${response.status}`);
+        }
         const result = await response.json();
         return result.data;
     } catch (error) {

@@ -68,6 +68,9 @@ export function useChatProcess() {
                 }),
                 signal: abortControllerRef.current.signal,
             });
+            if (!response.ok) {
+                throw new Error(`Similarity search failed: ${response.status}`);
+            }
             const result = await response.json();
             return result.data;
         } catch (error) {
