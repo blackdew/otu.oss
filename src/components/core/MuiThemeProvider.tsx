@@ -266,31 +266,6 @@ export const MuiThemeProvider = ({ children }: { children: React.ReactNode }) =>
                     },
                 },
             },
-            MuiInputBase: {
-                styleOverrides: {
-                    root: {
-                        color: 'var(--text-color)', // 텍스트 색상을 테마에 맞게 설정
-                        '& input': {
-                            color: 'var(--text-color)', // input 요소의 텍스트 색상
-                        },
-                        '& textarea': {
-                            color: 'var(--text-color)', // textarea 요소의 텍스트 색상
-                        },
-                        '&::placeholder': {
-                            color: 'var(--text-color)',
-                            opacity: 0.5, // placeholder의 투명도
-                        },
-                        '& input::placeholder': {
-                            color: 'var(--text-color)',
-                            opacity: 0.5,
-                        },
-                        '& textarea::placeholder': {
-                            color: 'var(--text-color)',
-                            opacity: 0.5,
-                        },
-                    },
-                },
-            },
             MuiPaper: {
                 styleOverrides: {
                     root: {
