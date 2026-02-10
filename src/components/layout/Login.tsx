@@ -115,7 +115,7 @@ export function Login() {
                         setTimeout(callback, 10);
                     },
                     yesLabel: t`전체동의 후 가입`,
-                    onNo: () => {},
+                    onNo: () => { },
                     noLabel: t`닫기`,
                 });
             } else {
@@ -171,7 +171,7 @@ export function Login() {
                 console.error(`Github login failed: ${error.message}`);
                 openConfirm({
                     message: t`로그인에 실패했습니다. 다시 시도해 주세요.`,
-                    onYes: () => {},
+                    onYes: () => { },
                     yesLabel: t`확인`,
                 });
             }
@@ -208,7 +208,7 @@ export function Login() {
                     console.error(`Google login failed: ${error.message}`);
                     openConfirm({
                         message: t`로그인에 실패했습니다. 다시 시도해 주세요.`,
-                        onYes: () => {},
+                        onYes: () => { },
                         yesLabel: t`확인`,
                     });
                 }
@@ -239,7 +239,7 @@ export function Login() {
                 console.error(`Apple login failed: ${error.message}`);
                 openConfirm({
                     message: t`로그인에 실패했습니다. 다시 시도해 주세요.`,
-                    onYes: () => {},
+                    onYes: () => { },
                     yesLabel: t`확인`,
                 });
             }
@@ -310,7 +310,7 @@ export function Login() {
             authLogger('이메일 로그인 실패', { email, error });
             openConfirm({
                 message: t`로그인에 실패했습니다. 다시 시도해 주세요.` + `: ${error.message}`,
-                onYes: () => {},
+                onYes: () => { },
                 yesLabel: t`확인`,
             });
         } else {
@@ -365,6 +365,7 @@ export function Login() {
                         value={email}
                         className="bg-white dark:bg-gray-800 text-black dark:text-white px-2 rounded-md"
                         disabled={emailFormLoading}
+                        sx={{ color: 'var(--inverted-text-color)' }}
                     />
                     <Input
                         type="password"
@@ -374,6 +375,7 @@ export function Login() {
                         value={password}
                         className="bg-white dark:bg-gray-800 text-black dark:text-white px-2 rounded-md"
                         disabled={emailFormLoading}
+                        sx={{ color: 'var(--inverted-text-color)' }}
                     />
                     <div className="flex gap-2 mt-2">
                         <Btn
